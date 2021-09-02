@@ -5,10 +5,11 @@ error_reporting(E_ALL);
 // error_reporting(0); // disable error
 date_default_timezone_set("Asia/Bangkok");
 
+$appName = "Notaris PPAT Rian Erza"; //Variable super GLOBAL 
+$host	 = "ppat.qmuaji.com.test"; //Variable super GLOBAL
+
 require 'dbConnect.php';
-
 require 'functions/general.php';
-
 require 'functions/users.php';
 
 if(loggedIn()) {
@@ -24,5 +25,5 @@ if(loggedIn()) {
 $alert = array();
 $currentFile = explode('/', $_SERVER['SCRIPT_NAME']);
 $currentFile = end($currentFile);
-$dateMax = date('Y-m-d', strtotime("+7 days"));
-$dateMin = date('Y-m-d');
+$dateMax 	 = date('Y-m-d', strtotime("+7 days"));
+$dateMin 	 = date('Y-m-d');

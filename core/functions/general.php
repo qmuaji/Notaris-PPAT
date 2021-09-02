@@ -96,7 +96,7 @@ function rupiah($angka) {
 }
 
 function email($to, $subject, $isi) {
-	mail($to, $subject, $isi, 'From: admin@notarisrianerza.com');
+	mail($to, $subject, $isi, "From: admin@{$GLOBALS['host']}");
 }
 
 function loggedInRedirect() {

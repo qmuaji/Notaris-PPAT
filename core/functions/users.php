@@ -22,7 +22,7 @@ function gantiSampulProfil($user_id, $fileTmp, $fileExtn) {
 function recover($email) {
 	$email = sanitize($email);
 	$password = substr(str_shuffle('RISKYMUAJISETYAPRANA1893'), 0, 7);
-	email($email , 'Lupa Password NOTARIS PPAT Rian Erza', "Dear {$email}, \n\nKami telah memulihkan akun kamu di Lan's Rooms Reservaton.\nSilakan login dengan password: {$password}\n\nJangan lupa segera ganti password kamu jika berhasil login.\n\n\n~NOTARIS PPAT Rian Erza");
+	email($email , "Lupa Password {$GLOBALS['appName']}", "Dear {$email}, \n\nKami telah memulihkan akun kamu di Lan's Rooms Reservaton.\nSilakan login dengan password: {$password}\n\nJangan lupa segera ganti password kamu jika berhasil login.\n\n\n~{$GLOBALS['appName']}");
 
 	return (mysql_query("UPDATE user SET Password=sha1('$password') WHERE Email='$email'")) ? true : false;
 
@@ -64,7 +64,7 @@ function registerUser($registerData) {
 	$data 	= '\''. implode('\', \'', $registerData) .'\'';
 	$url    = "ppat.qmuaji.com.test/activate.php?email=". $registerData['Email'] . "&email_code=" . $registerData['EmailCode'];
 
-	email($registerData['Email'], 'Aktivasi akun NOTARIS PPAT Rian Erza', "Dear ". $registerData['Email'] . ",\n\nAnda baru saja bergabung untuk menjadi member di NOTARIS PPAT Rian Erza. \nUntuk mengkonfirmasi bahwa email ini adalah email Anda, silakan klik link berikut:\n". $url ."\n\n\nJika Anda merasa tidak pernah mendaftarkan akun di NOTARIS PPAT Rian Erza, mohon abaikan email ini. \n\n\n\n~NOTARIS PPAT Rian Erza");
+	email($registerData['Email'], "Aktivasi akun {$GLOBALS['appName']}", "Dear ". $registerData['Email'] . ",\n\nAnda baru saja bergabung untuk menjadi member di {$GLOBALS['appName']}. \nUntuk mengkonfirmasi bahwa email ini adalah email Anda, silakan klik link berikut:\n". $url ."\n\n\nJika Anda merasa tidak pernah mendaftarkan akun di {$GLOBALS['appName']}, mohon abaikan email ini. \n\n\n\n~{$GLOBALS['appName']}");
 	return (mysql_query("INSERT INTO user ($fields) VALUES ($data)")) ? true : false;
 }
 

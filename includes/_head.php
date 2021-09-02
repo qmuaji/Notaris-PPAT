@@ -3,7 +3,7 @@
 <html>
 	<head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
-		<title>Notaris PPAT | Rian Erza</title>
+		<title><?=$appName ?></title>
 		<meta http-equiv="X-UA-Compatible" content="IE=8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
