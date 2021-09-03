@@ -25,5 +25,5 @@ if(loggedIn()) {
 $alert = array();
 $currentFile = explode('/', $_SERVER['SCRIPT_NAME']);
 $currentFile = end($currentFile);
-$dateMax 	 = date('Y-m-d', strtotime("+7 days"));
+$ageMax = date('Y-m-d', strtotime("-6000 days"));
 $dateMin 	 = date('Y-m-d');

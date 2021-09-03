@@ -92,9 +92,9 @@ function emailExists($email) {
 	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Email='$email'"), 0) == 1) ? true : false;
 }
 
-function usernameExists($username) {
-	$username = sanitize($username);
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Username='$username'"), 0) == 1) ? true : false;
+function nikExists($nik) {
+	$nik = sanitize($nik);
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE NIK='$nik'"), 0) == 1) ? true : false;
 }
 
 function userActive($email) {

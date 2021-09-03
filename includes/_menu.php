@@ -54,8 +54,8 @@
 			?>
 					<li><a href="#" class="button"><i class="icon fa-user"></i> <?php if(hasAccess($_SESSION['user_id'], 2)) echo "Admin"; if(hasAccess($_SESSION['user_id'], 3)) echo "Pemilik"?> <span class="icon fa-angle-down"></span></a>
 						<ul>
-							<li><a href="<?php if(!empty($userData['Username'])) echo $userData['Username']; else echo $userData['Email'] ?>"> &nbsp;<?php echo $userData['Email'] ?></a></li>
-							<li><a href="userSettings.php" class="icon fa-cog"> &nbsp;Pengaturan</a></li>
+							<li><a href="userSettings.php"> &nbsp;<?= $userData['Email'] ?></a></li>
+							<li><a href="gantiPass.php" class="icon fa-cog"> &nbsp;Ganti Password</a></li>
 							<li><a href="logout.php" class="icon fa-sign-out"> &nbsp;Log Out</a></li>
 						</ul>
 					</li>

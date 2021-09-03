@@ -40,21 +40,13 @@ if(!empty($alert)) echo outputErrors($alert);
 <div style="margin-top:-30px" id="main" class="container">				
 	<div class="row">
 		<div class="4u 12u(mobile)">
-			<div class="box	">							
+			<div class="box">							
+				<!-- <span class="image featured"><img src="/images/pic04.jpg" alt="Lan's Reservation" /></span>	 -->
 				<ul class="alt">
-				<li align="center"><h3 class="icon fa-cog"></h3></li>
-					<li><h4><a href="userSettings.php" class="icon fa-user"> Informasi Akun</a></h4></li>
-					<?php 
-					if (hasAccess($_SESSION['user_id'], 0)){
-						?>
-					<li><h4><a href="saldo.php" class="icon fa-money">&nbsp; Isi Saldo</a></h4></li>
-					<li><h4><a href="konfirmasi.php" class="icon fa-check"> Konfirmasi Bayar</a></h4></li>
-						<?php
-					}
-					 ?>
-					<li><h4><a href="gantiPass.php" class="icon fa-lock"> <b>Ganti Password</b></a></h4></li>
+					<li><h4><a href="userSettings.php" class="icon fa-user"> Informasi Akun</a></h4></li>					
+					<li><h4><a href="gantiPass.php" class="icon fa-lock"><b> Ganti Password</b>	</a></h4></li>
 				</ul>
-			</div>					
+			</div>						
 		</div>
 			
 		<div class="8u 12u(mobile)">
