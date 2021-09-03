@@ -2155,8 +2155,8 @@
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #FF8000;
-			box-shadow: 0 0 0 1px #FF8000;
+			border-color: #118226;
+			box-shadow: 0 0 0 1px #118226;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2351,7 +2351,7 @@
 			}
 
 			.icon.major.accent2 {
-				background: #FF8000;
+				background: #118226;
 				color: #ffffff;
 			}
 
@@ -3039,12 +3039,12 @@
 
 	#banner {
 		background-attachment: scroll,							fixed;
-		background-color: #FF8000;
-		background-image: url("images/overlay.png"), url("../../images/index2.jpg");
-		background-position: top left,						center center;
+		background-color: #118226;
+		background-image: url("images/overlay.png"), url("../../images/index (2).jpg");
+		background-position: top left,						bottom bottom;
 		background-repeat: repeat,							no-repeat;
 		background-size: auto,							cover;
-		color: #222;
+		color: #141313;
 		padding: 12em 0 20em 0;
 		text-align: center;
 	}
@@ -3180,7 +3180,7 @@
 /* CTA */
 
 	#cta {
-		background: #FF8000;
+		background: #118226;
 		color: #f9e5df;
 		padding: 3.5em 0 4em 0;
 		text-align: center;
@@ -3202,7 +3202,7 @@
 		#cta .button {
 			box-shadow: none;
 			background: #fff;
-			color: #FF8000;
+			color: #118226;
 		}
 
 		#cta input[type="text"],
@@ -3792,7 +3792,7 @@
 }
 
 #bg {
-	background-color: #FF8000;
+	background-color: #118226;
 }
 
 
