@@ -67,7 +67,6 @@ if(!empty($_POST)) {
 				'TglLahir'	=> $tglLahir,
 				'Alamat' 	=> $alamat
 			);
-
 			if(updateUser($updateData)) {
 				$alert[] = "Informasi akun berhasil di simpan <i class='icon fa-smile-o'></i>";
 			} else {
@@ -103,23 +102,23 @@ if(!empty($alert)) echo outputErrors($alert);
 							Nama Lengkap*
 							<input type="text" name="NamaLengkap" placeholder="Nama Lengkap" value="<?= $namaLengkap ?>" required minlength="3" maxlength="32">
 							No telepon* 
-							<input type="text" name="NoTlp" placeholder="Telepon"  value="<?= $noTlp ?>" maxlength="20">
+							<input type="text" name="NoTlp" placeholder="Telepon"  value="<?= $noTlp ?>" required maxlength="20">
 							Tempat Lahir
-							<input type="text" name="TmptLahir" placeholder="Tempat lahir"  value="<?= $tmptLahir ?>">
+							<input type="text" name="TmptLahir" placeholder="Tempat lahir" value="<?= $tmptLahir ?>">
 
 							Tanggal Lahir*
-							<?php ($tglLahir=="0000-00-00") ? $tglLahir="-" : $tglLahir = date('Y-m-d', strtotime($tglLahir))  ?>
+							<?php ($tglLahir=="0000-00-00") ? $tglLahir= "-" : $tglLahir = date('Y-m-d', strtotime($tglLahir))  ?>
 
-							<input type="Date" name="TglLahir" placeholder="Tanggal Lahir" max="<?=$ageMax?>" value="<?= $tglLahir ?>">
+							<input type="Date" name="TglLahir" placeholder="Tanggal Lahir" max="<?=$ageMax?>" required value="<?= $tglLahir ?>">
 							Pekerjaan*
-							<input type="text" name="Pekerjaan" placeholder="Pekerjaan"  value="<?= $pekerjaan ?>" maxlength="20">
+							<input type="text" name="Pekerjaan" placeholder="Pekerjaan"  value="<?= $pekerjaan ?>" required maxlength="20">
 						</div>	
 
 						<div class="6u 12u">	
 							Email
 							<input type="email" name="Email" placeholder="Email" value="<?= $email ?>" required maxlength="50" disabled>
 							Alamat*
-							<textarea name="Alamat" placeholder="Alamat" cols="30" rows="6" maxlength="225"><?= $alamat ?></textarea>
+							<textarea name="Alamat" placeholder="Alamat" cols="30" rows="6" maxlength="225" required=""><?= $alamat ?></textarea>
 							<input type="submit" value="Simpan" class="fit special">				
 						</div>
 					</div>		
