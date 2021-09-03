@@ -8,7 +8,7 @@ function hasAccess($user_id, $role){
 	$user_id = (int)$user_id;
 	$role 	 = (int)$role;
 	
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM user WHERE Id='$user_id' AND UserRoleId=$role"), 0) == 2) ? true : false;
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Id='$user_id' AND UserRoleId=$role"), 0) == 2) ? true : false;
 }
 
 
@@ -43,7 +43,7 @@ function updateUser($updateData) {
 function activate($email, $email_code) {
 	$email 		= sanitize($email);
 	$email_code = sanitize($email_code);
-	if(mysql_result(mysql_query("SELECT COUNT(Id) FROM user WHERE Email='$email' AND EmailCode='$email_code'"), 0) == 1) {
+	if(mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Email='$email' AND EmailCode='$email_code'"), 0) == 1) {
 		mysql_query("UPDATE user SET isActive=1 WHERE Email='$email' AND EmailCode='$email_code'");
 		return true;
 	} else {
@@ -78,7 +78,7 @@ function userData($user_id) {
 	if($funcNumArgs > 1){
 		unset($funcGetArgs[0]);
 		$fields = implode(', ', $funcGetArgs);
-		$data 	= mysql_fetch_assoc(mysql_query("SELECT $fields FROM user WHERE Id=$user_id"));
+		$data 	= mysql_fetch_assoc(mysql_query("SELECT $fields FROM User WHERE Id=$user_id"));
 	}
 	return $data;
 }
@@ -89,26 +89,26 @@ function loggedIn() {
 
 function emailExists($email) {
 	$email = sanitize($email);
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM user WHERE Email='$email'"), 0) == 1) ? true : false;
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Email='$email'"), 0) == 1) ? true : false;
 }
 
 function usernameExists($username) {
 	$username = sanitize($username);
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM user WHERE Username='$username'"), 0) == 1) ? true : false;
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Username='$username'"), 0) == 1) ? true : false;
 }
 
 function userActive($email) {
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM user WHERE Email='$email' AND IsActive=1"), 0) == 1) ? true : false;
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Email='$email' AND IsActive=1"), 0) == 1) ? true : false;
 }
 
 function getUserIdFromEmail($email) {
 	$email = sanitize($email);
-	return mysql_result(mysql_query("SELECT Id FROM user WHERE Email='$email' or Username='$email'"), 0, 'Id');
+	return mysql_result(mysql_query("SELECT Id FROM User WHERE Email='$email' or Username='$email'"), 0, 'Id');
 }
 
 function login($email, $password) {
 	$user_id  = getUserIdFromEmail($email);
 	$email 	  = sanitize($email);
 	$password = sha1($password);
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM user WHERE Email='$email' AND Password='$password'"), 0) == 1) ? $user_id : false;
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Email='$email' AND Password='$password'"), 0) == 1) ? $user_id : false;
 }
