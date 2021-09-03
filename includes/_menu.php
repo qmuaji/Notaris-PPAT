@@ -3,8 +3,8 @@
 	<div class="container">
 		<nav id="nav">
 			<ul>
-				<li><a href="#">Profil Usaha</a></li>
-				<li><a href="#">Informasi Layanan</a></li>
+				<li><a href="profilUsaha.php">Profil Usaha</a></li>
+				<li><a href="informasiLayanan.php">Informasi Layanan</a></li>
 				<li><a href="#">Alur Transaksi Akta</a></li>
 				<li> | </li>
 		<?php 

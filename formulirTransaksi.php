@@ -16,6 +16,7 @@ if(!empty($_POST)) {
 	$fileName = $_FILES['DocumentFile']['name'];
 	$fileExtn = strtolower(end(explode('.', $fileName)));
 	$fileTmp  = $_FILES['DocumentFile']['tmp_name'];
+
 	$requiredFields = array('JenisAkta', 'DocumentFile', 'Deskripsi');
 
 	foreach($_POST as $key=>$value) {
@@ -25,31 +26,15 @@ if(!empty($_POST)) {
 		}
 	}
 
-	// if(in_array($fileExtn, $tipeFile)) {		
-	// 	header("Location: /formulirTransaksi.php");
-	// } else {
-	// 	$alert[] = "Tipe file yang di perbolehkan: ", implode(', ', $tipeFile);
-	// }
+	if(!in_array($fileExtn, $tipeFile)) {		
+		$alert[] = "Tipe file yang di perbolehkan: ", implode(', ', $tipeFile);
+	}
 
 	if(empty($alert)) {
-		$jenisAkta 		= trim($_POST['JenisAkta']);
-		$namaLengkap 	= trim($_POST['NamaLengkap']);
+		$jenisAkta 		= trim($_POST['JenisAktaId']);
+		$aktaId 		= trim($_POST['AktaId']);
+		$deskripsi 		= trim($_POST['Deskripsi']);
 
-		if(nikExists($nik) && $nik !== $userData['NIK']) {
-			$alert[] = "Maaf, NIK '{$nik}'' sudah di gunakan.";
-		} 
-		if(!preg_match("/^[a-zA-Z ]*$/", $namaLengkap)) {
-			$alert[] = "Nama Lengkap hanya huruf dan spasi!";
-		} 
-		if(strlen($namaLengkap) < 5 || strlen($namaLengkap) > 50) {
-			$alert[] = "Nama Lengkap minimal 5 dan maksimal 50 karakter.";
-		} 
-		if(strlen($alamat) > 225) {
-			$alert[] = "Alamat maksimal 225 karakter.";
-		} 
-		if(strlen($noTlp) > 16 || strlen($noTlp) < 6 || !is_numeric($noTlp)) {
-			$alert[] = "No. tlp tidak valid!";
-		} 
 
 		if(empty($_FILES['DocumentFile']['name'])){
 			echo "Silakan pilih Dokumen PDF!";
@@ -58,7 +43,6 @@ if(!empty($_POST)) {
 
 		if(empty($alert)) {
 			$userAktaTransaction = array(
-				'NamaLengkap'=> ucwords(strtolower($namaLengkap)),
 				'TglTransaksi'	=> $tglTransaksi,
 				'KdTransaksi'	=> $kdTransaksi,
 				'AktaId'	=> $aktaId,
