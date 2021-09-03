@@ -15,11 +15,13 @@ include 'includes/_head.php';
 		
 		
 					<div class="box special">							
-						<?php include"a_graf_pel.php" ?>
+						<?php 
+						// include"a_graf_pel.php" ?>
 					</div>					
 
 					<div class="box special">							
-						<?php include"a_graf_trans.php" ?>
+						<?php 
+						// include"a_graf_trans.php" ?>
 					</div>					
 			
 			

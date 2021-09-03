@@ -12,7 +12,7 @@ include 'includes/_head.php';
 		<h3>Notaris PPAT <i class="icon fa-book"></i> Rian Erza</h3>					
 		<div class="box">		
 			<form action="" method="post" autocomplete="off">
-			<h2>Gabung</h2>
+			<h2>Daftar</h2>
 				<input type="email" name="email" id="email" placeholder="Alamat Email" required maxlength="50">
 				<input type="password" name="password" id="password" placeholder="Password" required minlength="6">
 				<input type="submit" value="Daftar" class="special fit">

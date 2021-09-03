@@ -8,7 +8,7 @@ function hasAccess($user_id, $role){
 	$user_id = (int)$user_id;
 	$role 	 = (int)$role;
 	
-	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Id='$user_id' AND UserRoleId=$role"), 0) == 2) ? true : false;
+	return (mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Id=$user_id AND UserRoleId=$role"), 0) == 1) ? true : false;
 }
 
 
