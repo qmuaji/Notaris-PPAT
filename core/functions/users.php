@@ -62,7 +62,7 @@ function registerUser($registerData) {
 	$registerData['Password'] = sha1($registerData['Password']);
 	$fields = implode(', ', array_keys($registerData));
 	$data 	= '\''. implode('\', \'', $registerData) .'\'';
-	$url    = "ppat.qmuaji.com.test/activate.php?email=". $registerData['Email'] . "&email_code=" . $registerData['EmailCode'];
+	$url    = "{$GLOBALS['host']}/activate.php?email=". $registerData['Email'] . "&email_code=" . $registerData['EmailCode'];
 
 	email($registerData['Email'], "Aktivasi akun {$GLOBALS['appName']}", "Dear ". $registerData['Email'] . ",\n\nAnda baru saja bergabung untuk menjadi member di {$GLOBALS['appName']}. \nUntuk mengkonfirmasi bahwa email ini adalah email Anda, silakan klik link berikut:\n". $url ."\n\n\nJika Anda merasa tidak pernah mendaftarkan akun di {$GLOBALS['appName']}, mohon abaikan email ini. \n\n\n\n~{$GLOBALS['appName']}");
 	return (mysql_query("INSERT INTO user ($fields) VALUES ($data)")) ? true : false;
