@@ -14,7 +14,7 @@ function hasAccess($user_id, $role){
 
 function gantiSampulProfil($user_id, $fileTmp, $fileExtn) {
 	$pathFile = sanitize('images/profile/'.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
-	mysql_query("UPDATE user SET Img='$pathFile' WHERE Id=$user_id");
+	mysql_query("UPDATE User SET Img='$pathFile' WHERE Id=$user_id");
 
 	move_uploaded_file($fileTmp, $pathFile);
 }
@@ -24,7 +24,7 @@ function recover($email) {
 	$password = substr(str_shuffle('RISKYMUAJISETYAPRANA1893'), 0, 7);
 	email($email , "Lupa Password {$GLOBALS['appName']}", "Dear {$email}, \n\nKami telah memulihkan akun kamu di Lan's Rooms Reservaton.\nSilakan login dengan password: {$password}\n\nJangan lupa segera ganti password kamu jika berhasil login.\n\n\n~{$GLOBALS['appName']}");
 
-	return (mysql_query("UPDATE user SET Password=sha1('$password') WHERE Email='$email'")) ? true : false;
+	return (mysql_query("UPDATE User SET Password=sha1('$password') WHERE Email='$email'")) ? true : false;
 
 }
 
@@ -37,14 +37,14 @@ function updateUser($updateData) {
 	}
 	$userData = implode(', ', $update);
 	$user_id = (int)$_SESSION['user_id'];
-	return (mysql_query("UPDATE user SET $userData WHERE Id=$user_id")) ? true : false;
+	return (mysql_query("UPDATE User SET $userData WHERE Id=$user_id")) ? true : false;
 }
 
 function activate($email, $email_code) {
 	$email 		= sanitize($email);
 	$email_code = sanitize($email_code);
 	if(mysql_result(mysql_query("SELECT COUNT(Id) FROM User WHERE Email='$email' AND EmailCode='$email_code'"), 0) == 1) {
-		mysql_query("UPDATE user SET isActive=1 WHERE Email='$email' AND EmailCode='$email_code'");
+		mysql_query("UPDATE User SET isActive=1 WHERE Email='$email' AND EmailCode='$email_code'");
 		return true;
 	} else {
 		return false;
@@ -55,7 +55,7 @@ function gantiPass($user_id, $password) {
 	$user_id  = (int)$user_id;
 	$password = sha1(sanitize($password));
 
-	return (mysql_query("UPDATE user SET Password='$password' WHERE Id=$user_id")) ? true : false;
+	return (mysql_query("UPDATE User SET Password='$password' WHERE Id=$user_id")) ? true : false;
 }
 
 function registerUser($registerData) {
@@ -65,7 +65,7 @@ function registerUser($registerData) {
 	$url    = "{$GLOBALS['host']}/activate.php?email=". $registerData['Email'] . "&email_code=" . $registerData['EmailCode'];
 
 	email($registerData['Email'], "Aktivasi akun {$GLOBALS['appName']}", "Dear ". $registerData['Email'] . ",\n\nAnda baru saja bergabung untuk menjadi member di {$GLOBALS['appName']}. \nUntuk mengkonfirmasi bahwa email ini adalah email Anda, silakan klik link berikut:\n". $url ."\n\n\nJika Anda merasa tidak pernah mendaftarkan akun di {$GLOBALS['appName']}, mohon abaikan email ini. \n\n\n\n~{$GLOBALS['appName']}");
-	return (mysql_query("INSERT INTO user ($fields) VALUES ($data)")) ? true : false;
+	return (mysql_query("INSERT INTO User ($fields) VALUES ($data)")) ? true : false;
 }
 
 function userData($user_id) {
