@@ -19,6 +19,15 @@ function gantiSampulProfil($user_id, $fileTmp, $fileExtn) {
 	move_uploaded_file($fileTmp, $pathFile);
 }
 
+function uploadDocumentFile($user_id, $fileTmp, $fileExtn) {
+	$pathFile = sanitize('files/'.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
+
+	return (mysql_query("INSERT INTO UserDocument ('Userid', 'DocumentName') VALUES ($user_id, $pathFile)")) ? true : false;
+
+	move_uploaded_file($fileTmp, $pathFile);
+}
+
+
 function recover($email) {
 	$email = sanitize($email);
 	$password = substr(str_shuffle('RISKYMUAJISETYAPRANA1893'), 0, 7);
@@ -64,7 +73,8 @@ function registerUser($registerData) {
 	$data 	= '\''. implode('\', \'', $registerData) .'\'';
 	$url    = "{$GLOBALS['host']}/activate.php?email=". $registerData['Email'] . "&email_code=" . $registerData['EmailCode'];
 
-	email($registerData['Email'], "Aktivasi akun {$GLOBALS['appName']}", "Dear ". $registerData['Email'] . ",\n\nAnda baru saja bergabung untuk menjadi member di {$GLOBALS['appName']}. \nUntuk mengkonfirmasi bahwa email ini adalah email Anda, silakan klik link berikut:\n". $url ."\n\n\nJika Anda merasa tidak pernah mendaftarkan akun di {$GLOBALS['appName']}, mohon abaikan email ini. \n\n\n\n~{$GLOBALS['appName']}");
+	email($registerData['Email'], "Aktivasi akun {$GLOBALS['appName']}", "Dear ". $registerData['Email'] . ",\n\nAnda baru saja bergabung untuk menjadi penghadap di {$GLOBALS['appName']}. \nUntuk mengkonfirmasi bahwa email ini adalah email Anda, silakan klik link berikut:\n". $url ."\n\n\nJika Anda merasa tidak pernah mendaftarkan akun di {$GLOBALS['appName']}, mohon abaikan email ini. \n\n\n\n~{$GLOBALS['appName']}");
+	
 	return (mysql_query("INSERT INTO User ($fields) VALUES ($data)")) ? true : false;
 }
 

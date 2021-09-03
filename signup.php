@@ -9,7 +9,7 @@ include 'includes/_head.php';
 	<?php if(!empty($alert)) echo outputErrors($alert)?>
 
 	<div id="login">
-		<h3>Notaris PPAT <i class="icon fa-book"></i> Rian Erza</h3>					
+		<h3><?= $appName ?></h3>		
 		<div class="box">		
 			<form action="" method="post" autocomplete="off">
 			<h2>Daftar</h2>

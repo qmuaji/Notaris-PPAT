@@ -1,9 +1,9 @@
 <?php
 
-function getStudio($kode) {
+function getJenisAkta($kode) {
 
 	echo "<option value='' >- Pilih -</option>";
-	$query = mysql_query("SELECT studio_id, name FROM studios");
+	$query = mysql_query("SELECT Id, JenisAkta FROM JenisAkta");
 
 	while ($row = mysql_fetch_row($query)) {
 

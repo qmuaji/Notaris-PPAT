@@ -13,7 +13,7 @@
 				?>
 				<li><a href="#">Pengajuan Akta <span class="icon fa-angle-down"></span></a>
 					<ul>
-						<li><a href="penyewaan.php">Formulir</a></li>		
+						<li><a href="formulirTransaksi.php">Formulir</a></li>		
 						<li><a href="penyewaan.php">Pengajuan Saya</a></li>		
 						<li><a href="konfirmasi.php">Konfirmasi Bayar</a></li>		
 					</ul>

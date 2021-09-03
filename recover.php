@@ -1,6 +1,6 @@
 <?php 
 require 'core/init.php';
-loggedInRedirect();
+// loggedInRedirect();
 
 if(isset($_POST['email']) && !empty($_POST['email'])) {
 	$email = trim($_POST['email']);
@@ -24,7 +24,7 @@ include 'includes/_head.php';
 	<?php if(!empty($alert)) echo outputErrors($alert) ?>
 
 	<div id="login">
-		<h3>Lan's <i class="icon fa-cube"></i> Reservation</h3>					
+		<h3><?= $appName ?></h3>					
 		<div class="box">		
 			<form action="" method="post">
 			<h2>Lupa password? <br> Tidak masalah..</h2>
@@ -33,7 +33,13 @@ include 'includes/_head.php';
 				<input type="submit" value="Kirim" class="special fit">
 			</form>
 		</div>
+		<a href="./"><?= $appName ?>  </a>
+	<?php
+	if(!loggedIn()) {
+	?>
 		Sudah punya akun? <a href="login.php">Log In</a><br>	
-		Belum punya akun? <a href="signup.php">Gabung</a>
+		Belum punya akun? <a href="signup.php">Daftar</a>
+		<?php
+	}?>
 	</div>
 </body>
