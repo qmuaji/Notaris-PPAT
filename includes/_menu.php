@@ -5,7 +5,7 @@
 			<ul>
 				<li><a href="profilUsaha.php">Profil Usaha</a></li>
 				<li><a href="informasiLayanan.php">Informasi Layanan</a></li>
-				<li><a href="#">Alur Transaksi Akta</a></li>
+				<li><a href="alurTransaksi.php">Alur Transaksi Akta</a></li>
 				<li> | </li>
 		<?php 
 		if(loggedIn()) {

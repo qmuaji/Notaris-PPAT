@@ -3,121 +3,114 @@ require 'core/init.php';
 include 'includes/_header.php' ?>
 
 <section id="main" class="container">
-	<div class="row">
+	<div class="row" >
 		<div class="col-12">
-
-			<!-- Lists -->
-				<section class="box">
-					<ul class="actions fit">
-						<li><a href="#" class="button special fit" style="background-color: blue">AKTA PENDIRIAN</a></li>
-						<li><a href="#" class="button special fit"style="background-color: green">AKTA PERJANJIAN SEWA</a></li>
-						<li><a href="#" class="button special fit" style="background-color: yellow">PERJANJIAN PERNIKAHAN</a></li>
-					</ul>
-					<ul class="actions fit">
-						<li><a href="#" class="button special fit" style="background-color: orange">AKTA PENDIRIAN CV</a></li>
-						<li><a href="#" class="button special fit" style="background-color: cyan">AKTA PERJANJIAN JUAL BELI</a></li>
-						<li><a href="#" class="button special fit" style="background-color: red">WASIAT</a></li>
-					</ul>
-					<ul class="actions fit">
-						<li><a href="#" class="button special fit" style="background-color: magenta">AKTA PERUBAHAN PT DAN CV</a></li>
-						<li><a href="#" class="button special fit" style="background-color: green">AKTA KESEPAKATAN BERSAMA</a></li>
-						<li><a href="#" class="button special fit" style="background-color: magenta">AKTA PENDIRIAN KOPERASI</a></li>
-					</ul>
-					<ul class="actions fit">
-						<li><a href="#" class="button special fit"style="background-color: magenta">AKTA PENDIRIAN YAYASAN</a></li>
-						<li><a href="#" class="button special fit"style="background-color: magenta">PERJANJIAN HUTANG</a></li>
-					</ul>
-					<ul class="actions fit">
-						<li><a href="#" class="button special fit"style="background-color: magenta">PENDIRIAN PERKUMPULAN</a></li>
-						<li><a href="#" class="button special fit"style="background-color: magenta">AKTA KUASA</a></li>
-					</ul>
-					<h3>Lists</h3>
-					<div class="row">
-						<div class="col-6 col-12-mobilep">
-
-							<h4>Unordered</h4>
-							<ul>
-								<li>Dolor pulvinar etiam magna etiam.</li>
-								<li>Sagittis adipiscing lorem eleifend.</li>
-								<li>Felis enim feugiat dolore viverra.</li>
-							</ul>
-
-							<h4>Alternate</h4>
-							<ul class="alt">
-								<li>Dolor pulvinar etiam magna etiam.</li>
-								<li>Sagittis adipiscing lorem eleifend.</li>
-								<li>Felis enim feugiat dolore viverra.</li>
-							</ul>
-
-						</div>
-						<div class="col-6 col-12-mobilep">
-
-							<h4>Ordered</h4>
-							<ol>
-								<li>Dolor pulvinar etiam magna etiam.</li>
-								<li>Etiam vel felis at lorem sed viverra.</li>
-								<li>Felis enim feugiat dolore viverra.</li>
-								<li>Dolor pulvinar etiam magna etiam.</li>
-								<li>Etiam vel felis at lorem sed viverra.</li>
-								<li>Felis enim feugiat dolore viverra.</li>
-							</ol>
-
-							<h4>Icons</h4>
-							<ul class="icons">
-								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-								<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-								<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
-							</ul>
-
-						</div>
-					</div>
-
-					<h4>Actions</h4>
+			<section class="box">
+				<div class="col-6 col-12-mobilep">
 					<ul class="actions">
-						<li><a href="#" class="button special">Default</a></li>
-						<li><a href="#" class="button">Default</a></li>
-						<li><a href="#" class="button alt">Default</a></li>
+						<li><a href="" class="button special fit" style="background-color: #2167C7">AKTA PENDIRIAN</a></li>
+						<li><a href="" class="button special fit"style="background-color: green">AKTA PERJANJIAN SEWA</a></li>
+						<li><a href="" class="button special fit" style="background-color: #B3B30E">PERJANJIAN PERNIKAHAN</a></li>
+						<li><a href="" class="button special fit" style="background-color: #C68713">AKTA PENDIRIAN CV</a></li>
+						<li><a href="" class="button special fit" style="background-color: #277171">AKTA PERJANJIAN JUAL BELI</a></li>
+						<li><a href="" class="button special fit" style="background-color: #BA2323">WASIAT</a></li>
+						<li><a href="" class="button special fit" style="background-color: #BC1DBC">AKTA PERUBAHAN PT DAN CV</a></li>
+						<li><a href="" class="button special fit" style="background-color: #64BD8A">AKTA KESEPAKATAN BERSAMA</a></li>
+						<li><a href="" class="button special fit" style="background-color: #BC1DBC">AKTA PENDIRIAN KOPERASI</a></li>
+						<li><a href="" class="button special fit"style="background-color: #BC1DBC">AKTA PENDIRIAN YAYASAN</a></li>
+						<li><a href="" class="button special fit"style="background-color: #BC1DBC">PERJANJIAN HUTANG</a></li>
+						<li><a href="" class="button special fit"style="background-color: #BC1DBC">PENDIRIAN PERKUMPULAN</a></li>
+						<li><a href="" class="button special fit"style="background-color: #BC1DBC">AKTA KUASA</a></li>
 					</ul>
-					<ul class="actions small">
-						<li><a href="#" class="button special small">Small</a></li>
-						<li><a href="#" class="button small">Small</a></li>
-						<li><a href="#" class="button alt small">Small</a></li>
-					</ul>
+
 					<div class="row">
-						<div class="col-3 col-6-narrower col-12-mobilep">
-							<ul class="actions stacked">
-								<li><a href="#" class="button special">Default</a></li>
-								<li><a href="#" class="button">Default</a></li>
-								<li><a href="#" class="button alt">Default</a></li>
-							</ul>
+						<div class="col-6 col-12-mobilep">
+							<h4><b>a.	Syarat-Syarat Pembuatan Akta Pendirian PT</b></h4>
+							<ol>
+								<li>KTP Penghadap (Jika Dikuasakan)</li>
+								<li>KTP dan NPWP Direktur dan Komisaris</li>
+								<li>Surat Kuasa</li>
+								<li>Notulen Rapat yang berisikan Nama Perseroan, Alamat Perseroan, Susunan organisasi, jumlah modal dasar, modal ditempatkan, Pembagian Saham, Kegiatan Usaha dan Tahun Buku Usaha, email perusahaan, Nomor telepon perusahaan, Nomor telp dan email pribadi.</li>
+								<li>Surat Pernyataan keterangan domisili tempat usaha.</li>
+								<li>Surat keterangan penyetoran modal.</li>
+							</ol>							
+							<h4><b>b.	Syarat-syarat Pembutan Akta Pendirian CV</b></h4>
+							<ol>
+								<li>KTP Penghadap (Jika Dikuasakan)</li>	
+								<li>KTP dan NPWP Sekutu Aktif dan Sekutu Pasif</li>	
+								<li>Surat Kuasa</li>	
+								<li>Notulen Rapat yang berisikan Nama Perseroan, Alamat Perseroan, Susunan organisasi, jumlah modal dasar,Pembagian Saham, Kegiatan Usaha dan Tahun Buku Usaha, email perusahaan, Nomor telepon perusahaan, Nomor telp dan email pribadi.</li>	
+								<li>Surat Pernyataan keterangan domisili tempat usaha.</li>	
+								<li>Surat keterangan penyetoran modal.</li>	
+							</ol>
+							<h4><b>c.	Syarat-Syarat Pembuatan Akta Yayasan</b></h4>
+							<ol>
+								<li>KTP Penghadap (Jika Dikuasakan)</li>
+								<li>KTP dan NPWP Pengurus</li>
+								<li>Surat Kuasa</li>
+								<li>Notulen Rapat yang berisikan nama Yayasan, alamat Yayasan, kekayaan awal Yayasan, tujuan Yayasan, kegiatan Yayasan, susunan pengurus, pengawas dan pembina Yayasan, email dan nomor telepn Yayasan.</li>
+								<li>Surat Pernyataan keterangan domisili tempat usaha.</li>
+							</ol>
+							<h4><b>d.	Syarat-Syarat Pembuatan Akta Pendirian Perkumpulan</b></h4>
+							<ol>
+								<li>KTP Penghadap (Jika Dikuasakan)</li>
+								<li>KTP dan NPWP Pengurus</li>
+								<li>Surat Kuasa</li>
+								<li>Notulen Rapat yang berisikan Nama Pekumpulan, Alamat Perkumpulan, Kegiatan Perkumpulan, Kekayaan Perkumpulan, Susunan Organisasi, Nomor Telepon dan Alamat Email Pengurus Perkumpulan.</li>
+								<li>Surat Pernyataan keterangan domisili tempat usaha.</li>
+							</ol>
+							<h4><b>e.	Syarat-Syarat Pembuatan Akta Perubahan PT CV YAYASAN</b></h4>
+							<ol>
+								<li>Ktp Penghadap</li>
+								<li>Cicular Pemegang saham atau notulen rapat Pengurus</li>
+								<li>KTP dan NPWP direksi, komisari atau pengurus</li>
+								<li>Anggaran dasar Perusahaan atau Yayasan</li>
+								<li>SK Kemnehumkam</li>
+								<li>NPWP Perseroan</li>
+
+							</ol>
 						</div>
-						<div class="col-3 col-6-narrower col-12-mobilep">
-							<ul class="actions stacked">
-								<li><a href="#" class="button special small">Small</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-								<li><a href="#" class="button alt small">Small</a></li>
-							</ul>
-						</div>
-						<div class="col-3 col-6-narrower col-12-mobilep">
-							<ul class="actions stacked">
-								<li><a href="#" class="button special fit">Default</a></li>
-								<li><a href="#" class="button fit">Default</a></li>
-								<li><a href="#" class="button alt fit">Default</a></li>
-							</ul>
-						</div>
-						<div class="col-3 col-6-narrower col-12-mobilep">
-							<ul class="actions stacked">
-								<li><a href="#" class="button special small fit">Small</a></li>
-								<li><a href="#" class="button small fit">Small</a></li>
-								<li><a href="#" class="button alt small fit">Small</a></li>
-							</ul>
+						<div class="col-6 col-12-mobilep">
+							<h4><b>f.	Syarat-Syarat Pembuatan Akta Perjanjian Sewa Menyewa</b></h4>
+							<ol>
+								<li>KTP Pihak Pertama</li>
+								<li>KTP Pihak Kedua</li>
+								<li>Surat yang menyatakan kepemilikan barang sewa (missal, jika bangunan maka harus dilampirkan sertifikat)</li>
+								<li>Draft Perjanjian Sewa Menyewa</li>
+							</ol>	
+							<h4><b>g.	Syarat-Syarat Pembuatan Akta Perjanjian Jual Beli</b></h>			
+							<ol>
+								<li>KTP Pihak Pertama</li>
+								<li>KTP Pihak Kedua</li>
+								<li>Surat yang menyatakan kepemilikan barang yang dijual belikan (misal, jika bangunan maka harus dilampirkan sertifikat)</li>
+								<li>Draft Perjanjian Jual Beli</li>
+							</ol>	
+							<h4><b>h.	Syarat-Syarat Pembuatan Akta Kesepakatan Bersama</b></h4>
+							<ol>
+								<li>KTP Pihak Pertama</li>
+								<li>KTP Pihak Kedua</li>
+								<li>Draft Perjanjian Kesepakatan Bersama</li>
+								<li>Dokumen pendukung lainnya</li>
+							</ol>
+							<h4><b>i.	Syarat-Syarat Pembuatan Akta Perjanjian Hutang</b></h4>
+							<ol>
+								<li>KTP Pihak Pertama</li>
+								<li>KTP Pihak Kedua</li>
+								<li>Draft Perjanjian Hutang</li>
+								<li>Dokumen pendukung lainnya</li>
+							</ol>
+							<h4><b>j.	Syarat-Syarat Pembuatan Akta Kuasa</b></h4>
+							<ol>
+								<li>KTP Pemberi Kuasa</li>
+								<li>KTP Penerima Kuasa</li>
+								<li>Draft Kuasa </li>
+								<li>Dokumen pendukung lainnya</li>
+
+							</ol>
 						</div>
 					</div>
-				</section>
-
+				</div>
+			</section>
 		</div>
 	</div>
 </section>
