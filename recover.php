@@ -33,13 +33,13 @@ include 'includes/_head.php';
 				<input type="submit" value="Kirim" class="special fit">
 			</form>
 		</div>
-		<a href="./"><?= $appName ?>  </a>
 	<?php
 	if(!loggedIn()) {
 	?>
 		Sudah punya akun? <a href="login.php">Log In</a><br>	
-		Belum punya akun? <a href="signup.php">Daftar</a>
+		Belum punya akun? <a href="signup.php">Daftar</a><br><br>
 		<?php
 	}?>
+		<a href="./"><?= $appName ?>  </a>
 	</div>
 </body>

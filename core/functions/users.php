@@ -113,7 +113,7 @@ function userActive($email) {
 
 function getUserIdFromEmail($email) {
 	$email = sanitize($email);
-	return mysql_result(mysql_query("SELECT Id FROM User WHERE Email='$email' or Username='$email'"), 0, 'Id');
+	return mysql_result(mysql_query("SELECT Id FROM User WHERE Email='$email'"), 0, 'Id');
 }
 
 function login($email, $password) {
