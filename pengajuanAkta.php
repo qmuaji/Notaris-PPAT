@@ -4,7 +4,7 @@ protectPage();
 
 $npwp='';
 $jenisAktaId='';
-deskripsi='';
+$deskripsi='';
 
 if(!empty($_POST)) {
 
@@ -104,7 +104,7 @@ if(!empty($alert)) echo outputErrors($alert);
 							Upload Dokumen Persyaratan*
 							<input type="file" name="DocPersyaratan" accept="files/*"><br>
 							Deskripsi
-							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225">$deskripsi</textarea>
+							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" ><?= $deskripsi ?></textarea>
 						</div>
 					</div>		
 					<input type="submit" value="Submit Pengajuan Akta" class="special fit">				
