@@ -13,7 +13,7 @@ require 'functions/general.php';
 require 'functions/users.php';
 
 if(loggedIn()) {
-	$userData   = userData($_SESSION['user_id'], 'Id', 'Email', 'Password', 'Username', 'NamaLengkap', 'NoTlp', 'Alamat', 'Img', 'UserRoleId', 'TmptLahir', 'TglLahir', 'NIK', 'Pekerjaan');
+	$userData   = userData($_SESSION['user_id'], 'Id', 'Email', 'Password', 'NamaLengkap', 'NoTlp', 'Alamat', 'Img', 'UserRoleId', 'TmptLahir', 'TglLahir', 'NIK', 'Pekerjaan');
 
 	if(!userActive($userData['Email'])) {
 		session_destroy();

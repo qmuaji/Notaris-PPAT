@@ -46,12 +46,12 @@ include 'includes/_head.php';
 			?>
 			<h4>Hi, <?= (empty($userData['NamaLengkap'])) ? "Selamat Datang.." : $userData['NamaLengkap'];  ?></h4>
 			<?php 
-			if(hasAccess($_SESSION['user_id'], 2)) {
+			if(hasAccess($_SESSION['user_id'], 1)) {
 			?>
 			
 			<ul class="actions">
-				<li><a href="<?php if(!empty($userData['Username'])) echo $userData['Username']; else echo $userData['Email'] ?>" class="button icon fa-user">Profil</a></li>
-				<li><a href="penyewaan.php" class="button icon fa-caret-right">My Reservation</a></li>
+				<li><a href="informasiAkun.php" class="button icon fa-user">Akun Saya</a></li>
+				<li><a href="pengajuanAkta.php" class="button">Pengajuan Saya</a></li>
 			</ul>
 			<?php
 			}

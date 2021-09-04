@@ -87,27 +87,25 @@ if(!empty($alert)) echo outputErrors($alert);
 							<a href="informasiAkun.php" class="button special fit"style="background-color: #1F74C4">Ubah Informasi Akun</a>
 						</div>	
 						<div class="6u 12u">	
-							<ul>
-								<li><b><a href="alurTransaksi.php">Klik untuk meihat Alur Transaksi Akta</a> </b></li>
-								<li><b><a href="alurTransaksi.php">Klik untuk meihat Persyaratan Pembuatan Akta</a> </b></li>
-							</ul>
-								
-								
-							</select>
+							<blockquote>								
+								<ul>
+									<li><h5><a href="alurTransaksi.php">Klik untuk meihat Alur Transaksi Akta</a> </h5></li>
+									<li><h5><a href="alurTransaksi.php">Klik untuk meihat Persyaratan Pembuatan Akta</a> </h5></li>
+									<li><h5>*Mohon isi data diri sesuai KTP</h5></li>
+									<li><h5>*Persyaratan pembuatan Akta format PDF dalam 1 File </h5></li>
+								</ul>							
+								</select>
+							</blockquote>
 							Jenis Akta*
 							<select name="JenisAkta" required>
 								<?php getJenisAkta() ?>
 							</select>
-							<blockquote>
-								<h6>*Mohon isi data diri sesuai KTP</h6>
-								<h6>*Persyaratan pembuatan Akta format PDF dalam 1 File </h6>
-							</blockquote>
-							Dokumen Persyaratan*
+							Upload Dokumen Persyaratan*
 							<input type="file" name="DocumentFile" accept="files/*"><br>
 							Deskripsi*
-							<textarea name="Deskripsi" placeholder="Alamat" cols="30" rows="6" maxlength="225" required=""><?= $deskripsi ?></textarea>
-							<input type="submit" value="Submit Pengajuan Akta" class="fit special">				
+							<textarea name="Deskripsi" placeholder="Desktipsi" cols="30" rows="6" maxlength="225" required=""><?= $deskripsi ?></textarea>
 						</div>
+							<input type="submit" value="Submit Pengajuan Akta" class="fit special">				
 					</div>		
 				</form>
 			</div>		

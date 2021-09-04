@@ -29,7 +29,6 @@ if(!empty($_POST)) {
 		$tglLahir 		= trim($_POST['TglLahir']);
 		$pekerjaan 		= trim($_POST['Pekerjaan']);
 
-
 		// if(!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) < 6 || strlen($email) > 50) {
 		// 	$alert[] = "Oops.. Email tidak valid!";
 		// } 
@@ -100,12 +99,12 @@ if(!empty($alert)) echo outputErrors($alert);
 							<?php ($tglLahir=="0000-00-00") ? $tglLahir= "-" : $tglLahir = date('Y-m-d', strtotime($tglLahir))  ?>
 
 							<input type="Date" name="TglLahir" placeholder="Tanggal Lahir" max="<?=$ageMax?>" required value="<?= $tglLahir ?>">
-							Pekerjaan*
-							<input type="text" name="Pekerjaan" placeholder="Pekerjaan"  value="<?= $pekerjaan ?>" required maxlength="20">
 						</div>	
 						<div class="6u 12u">	
 							Email
 							<input type="email" name="Email" placeholder="Email" value="<?= $email ?>" required maxlength="50" disabled>
+							Pekerjaan*
+							<input type="text" name="Pekerjaan" placeholder="Pekerjaan"  value="<?= $pekerjaan ?>" required maxlength="20">
 							Alamat*
 							<textarea name="Alamat" placeholder="Alamat" cols="30" rows="6" maxlength="225" required=""><?= $alamat ?></textarea>
 							<input type="submit" value="Simpan" class="fit special">				
