@@ -87,9 +87,9 @@ if(!empty($alert)) echo outputErrors($alert);
 					<div class="row">
 						<div class="6u 12u">	
 							No KTP*
-							<input type="text" name="NIK" placeholder="NIK" value="<?= $nik ?>" required minlength="3" maxlength="32">
+							<input type="text" name="NIK" placeholder="NIK" value="<?= $nik ?>" required minlength="7" maxlength="20">
 							Nama Lengkap*
-							<input type="text" name="NamaLengkap" placeholder="Nama Lengkap" value="<?= $namaLengkap ?>" required minlength="3" maxlength="32">
+							<input type="text" name="NamaLengkap" placeholder="Nama Lengkap" value="<?= $namaLengkap ?>" required minlength="3" maxlength="20">
 							No telepon* 
 							<input type="text" name="NoTlp" placeholder="Telepon"  value="<?= $noTlp ?>" required maxlength="20">
 							Tempat Lahir

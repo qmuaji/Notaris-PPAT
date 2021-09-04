@@ -31,31 +31,8 @@ function getNota(){
 	$i++;
 	}
 	$date 	= date('dmy');
-	$nota  = $date.$code;
+	$nota  = $code.$date;
 	return $nota;
-
-/*	$result = mysql_query("SELECT book_code FROM transactions");
-	$nota 	= mysql_fetch_array($result);
-	$date 	= date('dmy');
-	$date2	= date('ymd');
-	
-	if ($nota == 0){
-		$nota = $date.'0001';
-	}else{
-		$result = mysql_query("SELECT MAX(book_code) as nota from transactions 
-								WHERE book_code IN(SELECT MAX(book_code))
-								AND book_date='$date2'");
-		$row 	= mysql_fetch_assoc($result);
-		$nota	= $row['nota'];
-		$ambil	= substr($nota, 0,6);
-		if ($date == $ambil){
-			$nota = substr($nota, 5,10)+1;
-			$nota = substr($date, 0,5).$nota;
-		}else{
-			$nota = $date.'0001';
-		}
-	}
-	return $nota;*/
 }
 
 function hapusData($table, $key,$id) {

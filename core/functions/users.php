@@ -12,18 +12,10 @@ function hasAccess($user_id, $role){
 }
 
 
-function gantiSampulProfil($user_id, $fileTmp, $fileExtn) {
-	$pathFile = sanitize('images/profile/'.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
-	mysql_query("UPDATE User SET Img='$pathFile' WHERE Id=$user_id");
+function uploadDocumentFile($user_id, $fileTmp, $fileExtn, $kdTransaksi) {
+	$pathFile = sanitize('documents/persyaratan_'.$kdTransaksi.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
 
-	move_uploaded_file($fileTmp, $pathFile);
-}
-
-function uploadDocumentFile($user_id, $fileTmp, $fileExtn) {
-	$pathFile = sanitize('files/'.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
-
-	return (mysql_query("INSERT INTO UserDocument ('Userid', 'DocumentName') VALUES ($user_id, $pathFile)")) ? true : false;
-
+	mysql_query("INSERT INTO Document (DocPersyaratan, kdTransaksi) VALUES ('$pathFile', '$kdTransaksi')");
 	move_uploaded_file($fileTmp, $pathFile);
 }
 
