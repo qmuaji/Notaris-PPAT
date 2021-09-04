@@ -5,7 +5,7 @@ include 'includes/_header.php' ?>
 <section id="main" class="container">
 	<header>
 		<h2>Profil Usaha</h2>
-		<p>Kantor Notaris dan PPAT Rian Erza, S.H.,M.Kn.</p>
+		<p>Kantor Notaris & PPAT Rian Erza, S.H.,M.Kn.</p>
 	</header>
 	<div class="box">
 		<p>Kantor Notaris dan PPAT Rian Erza berdiri sejak diangkatnya Nyonya Rian Erza sebagai Notaris berdasarkan keputusan Menteri Hukum dan Hak Asasi Manusia Nomor AHU-232.AH.01.02.Tahun 2013. Setelah dilakukan sumpah jabatan, menyampaikan alamat kantor, contoh tanda tangan, paraf dan teraan cap/stempel jabatan Notaris kepada Kementerian Hukum dan Hak Asasi Manusia, secara resmi kantor ini mulai beroperasi.</p>

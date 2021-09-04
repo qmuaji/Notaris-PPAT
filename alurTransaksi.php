@@ -5,7 +5,7 @@ include 'includes/_header.php' ?>
 <section id="main" class="container">
 	<header>
 		<h2>Alur Transaksi</h2>
-		<p>Kantor Notaris dan PPAT Rian Erza, S.H.,M.Kn.</p>
+		<p>Kantor Notaris & PPAT Rian Erza, S.H.,M.Kn.</p>
 	</header>
 	<div class="box">
 		<p>		<b>Penghadap</b> mengisi formulir dan meng-upload dokumen persyaratan ke website kantor. Data yang di-upload akan langsung masuk ke database. Database akan melakukan validasi kelengkapan data, jika data yang di-input belum lengkap, maka sistem akan menolak mengeluarkan output. Jika dokumen persyaratan sudah lengkap maka database akan menyimpan formulir pengajuan dan data persyaratan yang kemudian akan diteruskan ke pembuat akta untuk dilakukan pengecekan data. Jika data yang telah di cek sudah sesuai, lengkap dan valid maka pembuat akta akan mulai melakukan pengerjaan akta. </p>

@@ -3,6 +3,10 @@ require 'core/init.php';
 include 'includes/_header.php' ?>
 
 <section id="main" class="container">
+	<header>
+		<h2>Informasi Layanan</h2>
+		<p>Kantor Notaris & PPAT Rian Erza, S.H.,M.Kn.</p>
+	</header>
 	<div class="row" >
 		<div class="col-12">
 			<section class="box">
