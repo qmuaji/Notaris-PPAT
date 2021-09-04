@@ -37,9 +37,11 @@ if(!empty($_POST)) {
 				'NIK' 			=> $userData['NIK'],
 				'Deskripsi'		=> $deskripsi
 			);
-
-			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {				
+			
+			if(in_array($fileExtn, $tipeFile)) {
 			uploadDocumentFile($userData['Id'], $fileTmp, $fileExtn, $kdTransaksi);
+			}
+			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {				
 				$alert[] = "Pengajuan Akta berhasil di submit! <a href='pengajuanSaya.php'> Lihat Status</a>";
 				$jenisAktaId = '';
 				$npwp 		= '';
