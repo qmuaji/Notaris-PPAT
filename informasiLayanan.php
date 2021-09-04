@@ -22,8 +22,7 @@ include 'includes/_header.php' ?>
 						<li><a href="" class="button special fit"style="background-color: #BC1DBC">PENDIRIAN PERKUMPULAN</a></li>
 						<li><a href="" class="button special fit"style="background-color: #BC1DBC">AKTA KUASA</a></li>
 					</ul>
-
-					<div class="row">
+					<div class="container">
 						<div class="col-6 col-12-mobilep">
 							<h4><b>a.	Syarat-Syarat Pembuatan Akta Pendirian PT</b></h4>
 							<ol>
@@ -67,7 +66,6 @@ include 'includes/_header.php' ?>
 								<li>Anggaran dasar Perusahaan atau Yayasan</li>
 								<li>SK Kemnehumkam</li>
 								<li>NPWP Perseroan</li>
-
 							</ol>
 						</div>
 						<div class="col-6 col-12-mobilep">
@@ -105,7 +103,6 @@ include 'includes/_header.php' ?>
 								<li>KTP Penerima Kuasa</li>
 								<li>Draft Kuasa </li>
 								<li>Dokumen pendukung lainnya</li>
-
 							</ol>
 						</div>
 					</div>
