@@ -26,9 +26,9 @@ if(!empty($_POST)) {
 		}
 	}
 
-	if(!in_array($fileExtn, $tipeFile)) {		
-		$alert[] = "Tipe file yang di perbolehkan: ", implode(', ', $tipeFile);
-	}
+	// if(!in_array($fileExtn, $tipeFile)) {		
+	// 	$alert[] = "Tipe file yang di perbolehkan: ", implode(', ', $tipeFile);
+	// }
 
 	if(empty($alert)) {
 		$jenisAkta 		= trim($_POST['JenisAktaId']);
@@ -62,33 +62,37 @@ if(!empty($_POST)) {
 include 'includes/_header.php';
 if(!empty($alert)) echo outputErrors($alert);
 ?>
-<div style="margin-top:-30px" id="main" class="container">				
+<div id="main" class="container">				
 	<div class="row">
 			
 		<div class="12u 12u(mobile)">
 			<div class="box">
-				<h3>Formulir Transaki Akta</h3>
+				<h3>Formulir Pengajuan Akta</h3>
 				<form action="" method="post" autocomplete="off" enctype="multipart/form-data">			
 					<div class="row">
 						<div class="6u 12u">	
-							NIK*
+							No KTP*
 							<input type="text" name="NIK" value="<?= $nik ?>" disabled minlength="3" maxlength="32">
 							Nama Lengkap*
 							<input type="text" name="NamaLengkap" value="<?= $namaLengkap ?>" disabled minlength="3" maxlength="32">
 							No telepon* 
 							<input type="text" name="NoTlp" value="<?= $noTlp ?>" disabled maxlength="20">
 							Tempat Lahir
-							<input type="text" name="TmptLahir" value="<?= $tmptLahir ?>">
-
+							<input type="text" name="TmptLahir" disabled value="<?= $tmptLahir ?>">
 							Tanggal Lahir*
 							<?php ($tglLahir=="0000-00-00") ? $tglLahir= "-" : $tglLahir = date('Y-m-d', strtotime($tglLahir))  ?>
-
 							<input type="Date" name="TglLahir" max="<?=$ageMax?>" disabled value="<?= $tglLahir ?>">
 							Pekerjaan*
 							<input type="text" name="Pekerjaan" value="<?= $pekerjaan ?>" disabled maxlength="20">
+							<a href="informasiAkun.php" class="button special fit"style="background-color: #1F74C4">Ubah Informasi Akun</a>
 						</div>	
-
 						<div class="6u 12u">	
+							<ul>
+								<li><b><a href="alurTransaksi.php">Klik untuk meihat Alur Transaksi Akta</a> </b></li>
+								<li><b><a href="alurTransaksi.php">Klik untuk meihat Persyaratan Pembuatan Akta</a> </b></li>
+							</ul>
+								
+								
 							</select>
 							Jenis Akta*
 							<select name="JenisAkta" required>
@@ -97,15 +101,12 @@ if(!empty($alert)) echo outputErrors($alert);
 							<blockquote>
 								<h6>*Mohon isi data diri sesuai KTP</h6>
 								<h6>*Persyaratan pembuatan Akta format PDF dalam 1 File </h6>
-
 							</blockquote>
 							Dokumen Persyaratan*
 							<input type="file" name="DocumentFile" accept="files/*"><br>
 							Deskripsi*
 							<textarea name="Deskripsi" placeholder="Alamat" cols="30" rows="6" maxlength="225" required=""><?= $deskripsi ?></textarea>
-
-
-							<input type="submit" value="Simpan" class="fit special">				
+							<input type="submit" value="Submit Pengajuan Akta" class="fit special">				
 						</div>
 					</div>		
 				</form>

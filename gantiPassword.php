@@ -1,6 +1,7 @@
 <?php
 require 'core/init.php';
 protectPage();
+
 if(!empty($_POST)) {
 	$requiredFields = array('oldPassword', 'newPassword', 'confirmPassword');
 	foreach($_POST as $key=>$value) {
@@ -21,11 +22,14 @@ if(!empty($_POST)) {
 
 			if($newPassword !== $confirmPassword) {
 				$alert[] = "Password baru kamu tidak cocok! <i class='icon fa-frown-o'></i>";
-			} elseif(strlen($newPassword) < 6) {
+			} 
+			if(strlen($newPassword) < 6) {
 				$alert[] = "Oops.. Password terlalu pendek! minimal 6 karakter.";
-			} elseif(strlen($newPassword) > 64) {
+			} 
+			if(strlen($newPassword) > 64) {
 				$alert[] = "Oops.. Password terlalu panjang! <i class='icon fa-frown-o'></i>";
-			} elseif(gantiPass($_SESSION['user_id'], $newPassword)){
+			} 
+			if(gantiPass($_SESSION['user_id'], $newPassword)){
 				$alert[] = "Password berhasil di ganti <i class='icon fa-smile-o'></i>";
 			} else {
 				$alert[] = "Password gagal di ganti!";
@@ -36,20 +40,11 @@ if(!empty($_POST)) {
 
 include 'includes/_header.php';
 if(!empty($alert)) echo outputErrors($alert);
+
 ?>
 <div style="margin-top:-30px" id="main" class="container">				
-	<div class="row">
-		<div class="4u 12u(mobile)">
-			<div class="box">							
-				<!-- <span class="image featured"><img src="/images/pic04.jpg" alt="Lan's Reservation" /></span>	 -->
-				<ul class="alt">
-					<li><h4><a href="userSettings.php" class="icon fa-user"> Informasi Akun</a></h4></li>					
-					<li><h4><a href="gantiPass.php" class="icon fa-lock"><b> Ganti Password</b>	</a></h4></li>
-				</ul>
-			</div>						
-		</div>
-			
-		<div class="8u 12u(mobile)">
+	<div class="row">			
+		<div class="6u 12u(mobile)">
 			<div class="box">
 				<form action="" method="post" autocomplete="off">						
 					<h3>Ganti Password</h3>

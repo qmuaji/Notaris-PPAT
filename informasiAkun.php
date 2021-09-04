@@ -81,23 +81,13 @@ if(!empty($alert)) echo outputErrors($alert);
 ?>
 <div style="margin-top:-30px" id="main" class="container">				
 	<div class="row">
-		<div class="4u 12u(mobile)">
-			<div class="box">							
-				<!-- <span class="image featured"><img src="/images/pic04.jpg" alt="Lan's Reservation" /></span>	 -->
-				<ul class="alt">
-					<li><h4><a href="userSettings.php" class="icon fa-user"> <b>Informasi Akun</b></a></h4></li>					
-					<li><h4><a href="gantiPass.php" class="icon fa-lock"> Ganti Password</a></h4></li>
-				</ul>
-			</div>						
-		</div>
-			
-		<div class="8u 12u(mobile)">
+		<div class="12u 12u(mobile)">
 			<div class="box">
 				<h3>Informasi Akun</h3>
 				<form action="" method="post" autocomplete="off">			
 					<div class="row">
 						<div class="6u 12u">	
-							NIK*
+							No KTP*
 							<input type="text" name="NIK" placeholder="NIK" value="<?= $nik ?>" required minlength="3" maxlength="32">
 							Nama Lengkap*
 							<input type="text" name="NamaLengkap" placeholder="Nama Lengkap" value="<?= $namaLengkap ?>" required minlength="3" maxlength="32">
@@ -113,7 +103,6 @@ if(!empty($alert)) echo outputErrors($alert);
 							Pekerjaan*
 							<input type="text" name="Pekerjaan" placeholder="Pekerjaan"  value="<?= $pekerjaan ?>" required maxlength="20">
 						</div>	
-
 						<div class="6u 12u">	
 							Email
 							<input type="email" name="Email" placeholder="Email" value="<?= $email ?>" required maxlength="50" disabled>
@@ -123,6 +112,7 @@ if(!empty($alert)) echo outputErrors($alert);
 						</div>
 					</div>		
 				</form>
+				<a href="pengajuanAkta.php" class="button special fit" style="background-color: #1F74C4">Pengajuan Akta</a>
 			</div>		
 		</div>
 	</div>
