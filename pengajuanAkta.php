@@ -3,16 +3,10 @@ require 'core/init.php';
 protectPage();
 
 $npwp='';
-if(!empty($_POST)) {
-	$tipeFile = array('pdf', 'doc', 'docx');
-	$fileName = $_FILES['DocPersyaratan']['name'];
-	$extn 	  = explode('.', $fileName);
-	$fileExtn = strtolower(end($extn));
-	$fileTmp  = $_FILES['DocPersyaratan']['tmp_name'];
+$jenisAktaId='';
+deskripsi='';
 
-	if(!in_array($fileExtn, $tipeFile)) {
-		$alert[] = "Tipe file yang di perbolehkan: ". implode(', ', $tipeFile);
-	}
+if(!empty($_POST)) {
 
 	$requiredFields = array('JenisAktaId', 'DocPersyaratan', 'NPWP', 'NIK');
 	foreach($_POST as $key=>$value) {
@@ -27,6 +21,16 @@ if(!empty($_POST)) {
 		$npwp 				= trim($_POST['NPWP']);
 		$deskripsi 			= trim($_POST['Deskripsi']);
 		$kdTransaksi 		= getNota();
+
+		$tipeFile = array('pdf', 'doc', 'docx');
+		$fileName = $_FILES['DocPersyaratan']['name'];
+		$extn 	  = explode('.', $fileName);
+		$fileExtn = strtolower(end($extn));
+		$fileTmp  = $_FILES['DocPersyaratan']['tmp_name'];
+
+		if(!in_array($fileExtn, $tipeFile)) {
+			$alert[] = "Tipe file yang di perbolehkan: ". implode(', ', $tipeFile);
+		}
 
 		if(empty($alert)) {
 			$userAktaTransaction = array(
@@ -44,8 +48,8 @@ if(!empty($_POST)) {
 			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {				
 				$alert[] = "Pengajuan Akta berhasil di submit! <a href='pengajuanSaya.php'> Lihat Status</a>";
 				$jenisAktaId = '';
-				$npwp 		= '';
-				$deskripsi 	= '';
+				$npwp 		 = '';
+				$deskripsi 	 = '';
 			} else {
 				$alert[] = "Pengajuan Akta gagal di submit! <i class='icon fa-frown-o'></i>";
 			}	
@@ -85,7 +89,7 @@ if(!empty($alert)) echo outputErrors($alert);
 							<blockquote>								
 								<ul>
 									<li><h5>Mohon isi data diri sesuai KTP</h5></li>
-									<li><h5>Persyaratan pembuatan Akta format PDF dalam 1 File </h5></li>
+									<li><h5>Persyaratan dokumen digabung dalam 1 file PDF</h5></li>
 									<li><h5><a href="alurTransaksi.php">Klik untuk meihat Alur Transaksi Akta</a> </h5></li>
 									<li><h5><a href="alurTransaksi.php">Klik untuk meihat Persyaratan Pembuatan Akta</a></h5></li>
 								</ul>
@@ -93,14 +97,14 @@ if(!empty($alert)) echo outputErrors($alert);
 							</blockquote>
 							Jenis Akta*
 							<select name="JenisAktaId" required>
-								<?php getJenisAkta() ?>
+								<?php getJenisAkta($jenisAktaId) ?>
 							</select>
 							NPWP*
 							<input type="text" name="NPWP" placeholder="NPWP*" required maxlength="20" value="<?= $npwp ?>">
 							Upload Dokumen Persyaratan*
 							<input type="file" name="DocPersyaratan" accept="files/*"><br>
 							Deskripsi
-							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225"></textarea>
+							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225">$deskripsi</textarea>
 						</div>
 					</div>		
 					<input type="submit" value="Submit Pengajuan Akta" class="special fit">				
