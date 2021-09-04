@@ -38,8 +38,8 @@ if(!empty($_POST)) {
 				'Deskripsi'		=> $deskripsi
 			);
 
-			uploadDocumentFile($userData['Id'], $fileTmp, $fileExtn, $kdTransaksi);
 			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {				
+			uploadDocumentFile($userData['Id'], $fileTmp, $fileExtn, $kdTransaksi);
 				$alert[] = "Pengajuan Akta berhasil di submit! <a href='pengajuanSaya.php'> Lihat Status</a>";
 				$jenisAktaId = '';
 				$npwp 		= '';
@@ -82,8 +82,8 @@ if(!empty($alert)) echo outputErrors($alert);
 						<div class="col-6 col-12-mobilep">	
 							<blockquote>								
 								<ul>
-									<li><h5>*Mohon isi data diri sesuai KTP</h5></li>
-									<li><h5>*Persyaratan pembuatan Akta format PDF dalam 1 File </h5></li>
+									<li><h5>Mohon isi data diri sesuai KTP</h5></li>
+									<li><h5>Persyaratan pembuatan Akta format PDF dalam 1 File </h5></li>
 									<li><h5><a href="alurTransaksi.php">Klik untuk meihat Alur Transaksi Akta</a> </h5></li>
 									<li><h5><a href="alurTransaksi.php">Klik untuk meihat Persyaratan Pembuatan Akta</a></h5></li>
 								</ul>
