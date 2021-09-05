@@ -51,7 +51,7 @@ include 'includes/_head.php';
 			
 			<ul class="actions">
 				<li><a href="informasiAkun.php" class="button icon fa-user">Akun Saya</a></li>
-				<li><a href="pengajuanAkta.php" class="button">Pengajuan Saya</a></li>
+				<li><a href="pengajuanSaya.php" class="button">Pengajuan Saya</a></li>
 			</ul>
 			<?php
 			}

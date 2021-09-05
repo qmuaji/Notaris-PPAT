@@ -109,7 +109,7 @@ if(!empty($alert)) echo outputErrors($alert);
 							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" ><?= $deskripsi ?></textarea>
 						</div>
 					</div>		
-					<input type="submit" value="Submit Pengajuan Akta" class="special fit">				
+					<input type="submit" value="Submit Pengajuan Akta" class="special fit">		
 				</form>
 			</section>		
 		</div>

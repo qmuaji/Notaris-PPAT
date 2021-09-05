@@ -18,7 +18,7 @@ if(isset($_POST['cari'])){
 								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
 								AND KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
-    $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE Id=$userData[Id] AND KdTransaksi='$cari'");   
+    $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE PenghadapId=$userData[Id] AND KdTransaksi='$cari'");   
 	?>		<?php
 }else{
 	$nota 		= mysql_query("SELECT * 
@@ -28,7 +28,7 @@ if(isset($_POST['cari'])){
 								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
 								ORDER BY TglTransaksi DESC LIMIT $offset, $batas") or die (mysql_error());
-	$q 			= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE Id=$userData[Id]");
+	$q 			= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE PenghadapId=$userData[Id]");
 } 
 
 $no = $offset+1;
@@ -135,10 +135,11 @@ $no = $offset+1;
 			</div>
 
 			<div class="6u 12u">		
-		  		<input type="text" name="cari" placeholder="Cari kode transaksi..">				   
+		  		<input type="text" name="cari" placeholder="Cari kode transaksi..">	
 			</div>
 		</div>
 	</form>
+		  		<a href="pengajuanAkta.php" class="button special fit">Buat Pengajuan Akta</a>					   
 	
 </div>
 
