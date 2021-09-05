@@ -3,7 +3,7 @@ require 'core/init.php';
 include 'includes/_header.php';
 
 $showPage 	= '';
-$batas		= 4;
+$batas		= 1;
 if (isset($_GET['page'])) $noPage = $_GET['page'];
 	else $noPage = 1;
 
@@ -38,11 +38,10 @@ $no = $offset+1;
 <div style="margin-top:-30px" id="main" class="container">
 	<h3> Status Pengajuan Saya</h3>
 	<?php  
-		if(mysql_num_rows($nota) == 0) echo("<hr><h2 align='center'><span class='icon fa-search'></span> Data tidak ditemukan, <br><a class='icon fa-chevron-left' href='penyewaan.php'> Kembali</a></h2><hr>");
+	if(mysql_num_rows($nota) == 0) echo("<hr><h2 align='center'><span class='icon fa-search'></span> Data tidak ditemukan, <br><a class='icon fa-chevron-left' href='penyewaan.php'> Kembali</a></h2><hr>");
 
-		while($transactionData = mysql_fetch_assoc($nota)){
-			$query2 = mysql_query("SELECT DocPersyaratan FROM Document WHERE KdTransaksi='$transactionData[KdTransaksi]'");
-		?>
+	while($transactionData = mysql_fetch_assoc($nota)){
+	?>
 	<div class="box">
 		<?php 
 		$today_dt = new DateTime(date('Y-m-d'));
@@ -109,29 +108,27 @@ $no = $offset+1;
 		}
 		?>
 	<form action="" method="POST">
-		<div class="row">
-			
+		<div class="row">			
 			<div  align="right" class="6u 12u">
-				<?php 			
+			<?php 	
+		 	$jml 		= mysql_fetch_array($q);
+		  	$jmlData	= $jml[0];
+		  	$jmlPage	= ceil($jmlData / $batas);
 
-			 	$jml 		= mysql_fetch_array($q);
-			  	$jmlData	= $jml[0];
-			  	$jmlPage	= ceil($jmlData / $batas);
+			if($noPage > 1) echo "<a class='button alt small' href=$_SERVER[PHP_SELF]?page=".($noPage-1)."><span class='icon fa-chevron-left'></a>";
 
-				if($noPage > 1) echo "<a class='button alt small' href=$_SERVER[PHP_SELF]?page=".($noPage-1)."><span class='icon fa-chevron-left'></a>";
-
-				  for($i=1; $i <= $jmlPage; $i++){
-				    if ((($i >= $noPage - $batas) && ($i <= $noPage + $batas)) || ($i == 1)  || $i == $jmlPage){
-				      if(($showPage == 1) && ($i != 2)) echo "<a class='button small'>...</a>";
-				      if(($showPage != ($jmlPage - 1)) && ($i == $jmlPage)) echo "<a class='button alt small'>...</a>";
-				      if($i==$noPage) echo "<a class='button special alt small'>$i</a>";
-				      else echo "<a class='button alt small' href=".$_SERVER['PHP_SELF']."?page=".$i." > ".$i."</a>";
-				      $showPage=$i;
-				    }  
-				}			 
-				
-				if ($noPage < $jmlPage) echo "<a class='button alt small' href=$_SERVER[PHP_SELF]?page=".($noPage+1)."><span class='icon fa-chevron-right'></span></a>";
-				?>	
+			  for($i=1; $i <= $jmlPage; $i++){
+			    if ((($i >= $noPage - $batas) && ($i <= $noPage + $batas)) || ($i == 1)  || $i == $jmlPage){
+			      if(($showPage == 1) && ($i != 2)) echo "<a class='button small'>...</a>";
+			      if(($showPage != ($jmlPage - 1)) && ($i == $jmlPage)) echo "<a class='button alt small'>...</a>";
+			      if($i == $noPage) echo "<a class='button special alt small'>$i</a>";
+			      else echo "<a class='button alt small' href=".$_SERVER['PHP_SELF']."?page=".$i." > ".$i."</a>";
+			      $showPage=$i;
+			    }  
+			}			 
+			
+			if ($noPage < $jmlPage) echo "<a class='button alt small' href=$_SERVER[PHP_SELF]?page=".($noPage+1)."><span class='icon fa-chevron-right'></span></a>";
+			?>	
 			</div>
 
 			<div class="6u 12u">		
