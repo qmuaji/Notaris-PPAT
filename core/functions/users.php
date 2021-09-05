@@ -23,7 +23,7 @@ function uploadDocumentFile($user_id, $fileTmp, $fileExtn, $kdTransaksi) {
 function recover($email) {
 	$email = sanitize($email);
 	$password = substr(str_shuffle('RISKYMUAJISETYAPRANA1893'), 0, 7);
-	email($email , "Lupa Password {$GLOBALS['appName']}", "Dear {$email}, \n\nKami telah memulihkan akun kamu di Lan's Rooms Reservaton.\nSilakan login dengan password: {$password}\n\nJangan lupa segera ganti password kamu jika berhasil login.\n\n\n~{$GLOBALS['appName']}");
+	email($email , "Lupa Password {$GLOBALS['appName']}", "Dear {$email}, \n\nKami telah memulihkan akun kamu di {$appName}.\nSilakan login dengan password: {$password}\n\nJangan lupa segera ganti password kamu jika berhasil login.\n\n\n~{$GLOBALS['appName']}");
 
 	return (mysql_query("UPDATE User SET Password=sha1('$password') WHERE Email='$email'")) ? true : false;
 
