@@ -12,60 +12,65 @@ include 'includes/_head.php';
   </script>
 <?php 
 if(isset($_GET['code']) || isset($_SESSION['cetakNota'])){
-	isset($_GET['code']) ? $book_code  = $_GET['code'] : $book_code  = $_SESSION['cetakNota'];
-	$query 		= mysql_query("SELECT * FROM transactions WHERE md5(book_code)='$book_code'");
-	$row 		= mysql_fetch_assoc($query);		
-	$query2 	= mysql_query("SELECT i_time  FROM bookings WHERE md5(book_code)='$book_code'");		
+	isset($_GET['code']) ? $kdTransaksi  = $_GET['code'] : $kdTransaksi  = $_SESSION['cetakNota'];
+	$query 		= mysql_query("SELECT * 
+								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
+								WHERE User.Id=UserAktaTransaction.PenghadapId 
+								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
+								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+								AND md5(KdTransaksi)='$kdTransaksi'");
+	$transactionData 		= mysql_fetch_assoc($query);		
 	
 ?>
 <div class="container" style="margin-top:-30px" id="main">
 	<div class="box">
-	<h2 align="center">Lan's <i class="icon fa-cube"></i> Reservation <br> #<?php echo $row['book_code'] ?></h2>
+	<h2 align="center"><?=$appName?> <br> #<?= $transactionData['KdTransaksi'] ?></h2>
 	<table>
 		<tr>
-			<td>
-				Kode Pesan <br>
-				Tgl Pesan <br>
-				Nama Ruangan				
+			<td width="180px">
+				Kode Transaksi <br>
+				Tgl Transaksi <br>
+				Jenis Transaksi				
 			</td>
 			<td>
-				: <?php echo $row['book_code'] ?> <br>
-				: <?php echo date('d F, Y', strtotime($row['book_date'])) ?>  <br>
-				: <?php echo $row['studio_name'] ?>				
+				: <?= $transactionData['KdTransaksi'] ?> <br>
+				: <?= date('d F, Y', strtotime($transactionData['TglTransaksi'])) ?>  <br>
+				: <?= $transactionData['JenisAkta'] ?>
+				
 			</td>
-			<td></td>
-			<td >
-				Nama <br>
-				Tlp <br>
-				Email <br>				
+			
+			<td widtd="90px">
+				Penghadap <br>
+				NIK <br>
+				Tlp <br>				
 			</td>
 			<td>
-				: <?php echo $row['first_name'] ?> <br>
-				: <?php echo $row['tlp'] ?> <br>
-				: <?php echo $row['email'] ?>				
+				: <?= $transactionData['NamaLengkap'] ?> <br>
+				: <?= $transactionData['NIK'] ?> <br>
+				: <?= $transactionData['NoTlp'] ?>				
 			</td>
 		</tr>
 	</table>
 
 	<table class="alt" style="margin-top:-25px">
 		<tr align="center">
-			<td>Jam Sewa</td>
-			<td>Harga / jam</td>
-			<td>Total Bayar</td>
+			<td>No. SK/SP</td>
+			<td>Harga (Rp)</td>
+			<td>Sudah Bayar (Rp)</td>
+			<td>Metode Bayar</td>
+			<td>Keterangan</td>
 		</tr>
 		<tr align="center">
 			<td>
-			<?php 
-			while($row3 = mysql_fetch_array($query2)) {
-				$end = $row3['i_time'] + 1;
-				echo $row3['i_time'],":00 - $end:00"."<br>";
-			}
+			<?php
+			(!empty($transactionData['NoSK'])) ? $noSK=$transactionData['NoSK'] : $noSK='-';
+				echo $noSK;
 			?>
 			</td>
-			<td>
-				<?php echo rupiah($row['price']) ." X ".$row['q']?>
-			</td>
-			<td><?php echo rupiah($row['total'])?></td>
+			<td><?= rupiah($transactionData['Harga'])?></td>
+			<td><?= rupiah($transactionData['SudahBayar'])?></td>
+			<td> <?= $transactionData['MetodeBayar']?></td>	
+			<td> <?= $transactionData['Keterangan']?></td>	
 		</tr>
 	</table>
 	</div>

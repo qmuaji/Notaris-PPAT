@@ -49,13 +49,13 @@ $no = $offset+1;
 		$expire_dt = new DateTime($transactionData['TglTransaksi']);
 		
 		if ($transactionData['AktaStatusId'] == 3) {
-			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button fit icon fa-print" target="blank">Cetak</a><?php
+			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button special fit icon fa-print" target="blank">Cetak</a><?php
 		} else {
 			($transactionData['AktaStatusId'] == 4) ? $warna = 'red' : $warna='green';
 			?><b style="color:<?= $warna ?>"><?=$transactionData['Status']?></b> <?php
 		}
 		?>
-		<table>
+	<table>
 		<tr>
 			<td width="180px">
 				Kode Transaksi <br>
