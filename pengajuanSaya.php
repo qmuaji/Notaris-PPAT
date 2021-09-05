@@ -11,11 +11,23 @@ $offset=($noPage - 1) * $batas;
 
 if(isset($_POST['cari'])){ 
   	$cari 		= trim($_POST['cari']);  
-	$nota 		= mysql_query("SELECT * FROM UserAktaTransaction, User WHERE User.Id=UserAktaTransaction.PenghadapId AND PenghadapId=$userData[Id] AND KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
+	$nota 		= mysql_query("SELECT * 
+								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
+								WHERE User.Id=UserAktaTransaction.PenghadapId 
+								AND PenghadapId=$userData[Id] 
+								AND JenisAkta.id=UserAktaTransaction.JenisAktaId
+								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+								AND KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
     $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE Id=$userData[Id] AND KdTransaksi='$cari'");   
 	?>		<?php
 }else{
-	$nota 		= mysql_query("SELECT * FROM UserAktaTransaction, User WHERE User.Id=UserAktaTransaction.PenghadapId AND PenghadapId=$userData[Id] ORDER BY TglTransaksi DESC LIMIT $offset, $batas") or die (mysql_error());
+	$nota 		= mysql_query("SELECT * 
+								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
+								WHERE User.Id=UserAktaTransaction.PenghadapId 
+								AND PenghadapId=$userData[Id] 
+								AND JenisAkta.id=UserAktaTransaction.JenisAktaId
+								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+								ORDER BY TglTransaksi DESC LIMIT $offset, $batas") or die (mysql_error());
 	$q 			= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE Id=$userData[Id]");
 } 
 
@@ -39,7 +51,7 @@ $no = $offset+1;
 		if ($transactionData['AktaStatusId'] == 3) {
 			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button fit icon fa-print" target="blank">Cetak</a><?php
 		} else {
-			?><b style="color:green">Diperiksa</b> <?php
+			?><b style="color:green"><?=$transactionData['Status']?></b> <?php
 		}
 		?>
 		<table>
@@ -47,17 +59,17 @@ $no = $offset+1;
 			<td width="180px">
 				Kode Transaksi <br>
 				Tgl Transaksi <br>
-				Nama Akta				
+				Jenis Transaksi				
 			</td>
 			<td>
 				: <?= $transactionData['KdTransaksi'] ?> <br>
 				: <?= date('d F, Y', strtotime($transactionData['TglTransaksi'])) ?>  <br>
-				: <?= $transactionData['NamaAkta'] ?>
+				: <?= $transactionData['JenisAkta'] ?>
 				
 			</td>
 			
 			<td widtd="90px">
-				Nama <br>
+				Penghadap <br>
 				NIK <br>
 				Tlp <br>				
 			</td>
@@ -71,23 +83,23 @@ $no = $offset+1;
 
 	<table class="alt" style="margin-top:-25px">
 		<tr align="center">
-			<td>Jam Sewa</td>
-			<td>Harga / jam (Rp)</td>
-			<td>Total Bayar (Rp)</td>
+			<td>No. SK/SP</td>
+			<td>Harga (Rp)</td>
+			<td>Sudah Bayar (Rp)</td>
+			<td>Metode Bayar</td>
+			<td>Keterangan</td>
 		</tr>
 		<tr align="center">
 			<td>
-			<?php 
-			while($row2 = mysql_fetch_assoc($query2)) {
-				// $end = $row2['i_time'] + 1;
-				// echo $row2['i_time'],":00 - $end:00"."<br>";
-			}
+			<?php
+			(!empty($transactionData['NoSK'])) ? $noSK=$transactionData['NoSK'] : $noSK='-';
+				echo $noSK;
 			?>
 			</td>
-			<td>
-				<?= rupiah($transactionData['Harga'])?>
-			</td>
-			<td> <?= rupiah($transactionData['SudahBayar'])?></td>	
+			<td><?= rupiah($transactionData['Harga'])?></td>
+			<td><?= rupiah($transactionData['SudahBayar'])?></td>
+			<td> <?= $transactionData['MetodeBayar']?></td>	
+			<td> <?= $transactionData['Keterangan']?></td>	
 		</tr>
 	</table>
 
