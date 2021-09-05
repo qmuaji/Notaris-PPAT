@@ -47,6 +47,8 @@ if(!empty($_POST)) {
 			}
 			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {				
 				$alert[] = "Pengajuan Akta berhasil di submit! <a href='pengajuanSaya.php'> Lihat Status</a>";
+				email($userData['Email'], 'Pengajuan Akta '.$appName.' - ' . $kdTransaksi, "Dear {$userData['NamaLengkap']}, \n\nTerimakasih telah melakukan pengajuan Transaksi Akta. \n Kode transaksi pengajuan anda: {$kdTransaksi}\n\n ~".$appName);
+					// header("Location: pengajuanSaya.php");
 				$jenisAktaId = '';
 				$npwp 		 = '';
 				$deskripsi 	 = '';

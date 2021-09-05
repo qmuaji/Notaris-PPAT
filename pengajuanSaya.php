@@ -51,7 +51,8 @@ $no = $offset+1;
 		if ($transactionData['AktaStatusId'] == 3) {
 			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button fit icon fa-print" target="blank">Cetak</a><?php
 		} else {
-			?><b style="color:green"><?=$transactionData['Status']?></b> <?php
+			($transactionData['AktaStatusId'] == 4) ? $warna = 'red' : $warna='green';
+			?><b style="color:<?= $warna ?>"><?=$transactionData['Status']?></b> <?php
 		}
 		?>
 		<table>
