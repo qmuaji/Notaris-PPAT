@@ -1,9 +1,9 @@
 <?php
 require 'core/init.php';
 include 'includes/_header.php';
-
+protectPage();
 $showPage 	= '';
-$batas		= 1;
+$batas		= 4;
 if (isset($_GET['page'])) $noPage = $_GET['page'];
 	else $noPage = 1;
 
