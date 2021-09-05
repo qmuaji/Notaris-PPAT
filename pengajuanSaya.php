@@ -15,7 +15,7 @@ if(isset($_POST['cari'])){
 								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
 								WHERE User.Id=UserAktaTransaction.PenghadapId 
 								AND PenghadapId=$userData[Id] 
-								AND JenisAkta.id=UserAktaTransaction.JenisAktaId
+								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
 								AND KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
     $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE Id=$userData[Id] AND KdTransaksi='$cari'");   
@@ -25,7 +25,7 @@ if(isset($_POST['cari'])){
 								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
 								WHERE User.Id=UserAktaTransaction.PenghadapId 
 								AND PenghadapId=$userData[Id] 
-								AND JenisAkta.id=UserAktaTransaction.JenisAktaId
+								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
 								ORDER BY TglTransaksi DESC LIMIT $offset, $batas") or die (mysql_error());
 	$q 			= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE Id=$userData[Id]");
