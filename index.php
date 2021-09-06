@@ -38,7 +38,7 @@ include 'includes/_head.php';
 	?>
 	
 		<section id="banner">
-			<h2>Pengelolaan Transaksi Akta <br><i class="icon fa-book"></i></h2>
+			<h2>Pengelolaan Transaksi Akta<br><i class="icon fa-book"></i></h2>
 	<div id="page-wrapper">
 
 		<?php
