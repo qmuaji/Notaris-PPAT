@@ -36,7 +36,7 @@ function getNota(){
 }
 
 function hapusData($table, $key,$id) {
-	return (mysql_query("DELETE FROM $table WHERE $key='$id'")) ? true : false;
+	return (mysql_query("DELETE FROM $table WHERE $key=$id")) ? true : false;
 }
 
 function nameExist($table, $name) {

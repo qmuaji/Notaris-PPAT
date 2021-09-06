@@ -12,7 +12,7 @@ if (isset($_GET['del'])){
 }
 
 if(isset($_GET['del']) && isset($_GET['y'])) {
-	$del 	 = $_GET['del'];
+
 	if(hapusData('equips', 'eq_id', $del)) {
 		header('Location: a_equips.php');
 	}

@@ -2,23 +2,6 @@
 require 'core/init.php';
 include 'includes/_header.php';
 protectPage();
-
-if (isset($_GET['del'])){
-	$del 	 = $_GET['del'];
-	$alert[] = "Yakin mau hapus '$del'? <a class='button alt small icon fa-check' href='?del=$del&y'> Ya</a> <a class='button small special icon fa-remove' href='?del=$del&n'> Tidak</a>";
-	echo outputErrors($alert);
-}
-
-if(isset($_GET['del']) && isset($_GET['y'])) {
-	if(hapusData('UserAktaTransaction', 'KdTransaksi', $_GET['del'])) {
-		header('Location: pengajuanSaya.php');
-	}
-}
-
-if(isset($_GET['del']) && isset($_GET['n'])) {
-	header('Location: pengajuanSaya.php');
-}
-
 $showPage 	= '';
 $batas		= 4;
 if (isset($_GET['page'])) $noPage = $_GET['page'];
@@ -28,7 +11,7 @@ $offset=($noPage - 1) * $batas;
 
 if(isset($_POST['cari'])){ 
   	$cari 		= trim($_POST['cari']);  
-	$nota 		= mysql_query("SELECT *
+	$nota 		= mysql_query("SELECT * 
 								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
 								WHERE User.Id=UserAktaTransaction.PenghadapId 
 								AND PenghadapId=$userData[Id] 
@@ -38,7 +21,7 @@ if(isset($_POST['cari'])){
     $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE PenghadapId=$userData[Id] AND KdTransaksi='$cari'");   
 	?>		<?php
 }else{
-	$nota 		= mysql_query("SELECT *
+	$nota 		= mysql_query("SELECT * 
 								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
 								WHERE User.Id=UserAktaTransaction.PenghadapId 
 								AND PenghadapId=$userData[Id] 
@@ -55,32 +38,27 @@ $no = $offset+1;
 <div style="margin-top:-30px" id="main" class="container">
 	<h3> Status Pengajuan Saya</h3>
 	<?php  
-	if(mysql_num_rows($nota) == 0) echo("<hr><h2 align='center'><span class='icon fa-search'></span> Data tidak ditemukan, <br><a class='icon fa-chevron-left' href='pengajuanSaya.php'> Kembali</a></h2><hr>");
+	if(mysql_num_rows($nota) == 0) echo("<hr><h2 align='center'><span class='icon fa-search'></span> Data tidak ditemukan, <br><a class='icon fa-chevron-left' href='penyewaan.php'> Kembali</a></h2><hr>");
 
 	while($transactionData = mysql_fetch_assoc($nota)){
 	?>
 	<div class="box">
-		<div class="row">
-			<div class="6u 12u">
-			<?php 
-			
-			if ($transactionData['AktaStatusId'] == 3) {
-				?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button special fit icon fa-print" target="blank">Cetak</a><?php
-			} else {
-				($transactionData['AktaStatusId'] == 4) ? $warna = 'red' : $warna='green';
-				?><b style="color:<?= $warna ?>"><?=$transactionData['Status']?></b> <?php
-			}
-			?>
-			</div>
-			<div class="6u 12u" align="right">
-				<a href="?del=<?=$transactionData['KdTransaksi']?>" class="icon fa-trash"></a>			
-			</div>
-		</div>
+		<?php 
+		$today_dt = new DateTime(date('Y-m-d'));
+		$expire_dt = new DateTime($transactionData['TglTransaksi']);
+		
+		if ($transactionData['AktaStatusId'] == 3) {
+			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button special fit icon fa-print" target="blank">Cetak</a><?php
+		} else {
+			($transactionData['AktaStatusId'] == 4) ? $warna = 'red' : $warna='green';
+			?><b style="color:<?= $warna ?>"><?=$transactionData['Status']?></b> <?php
+		}
+		?>
 	<table>
 		<tr>
 			<td width="180px">
 				Kode Transaksi <br>
-				Tgl Akta <br>
+				Tgl Transaksi <br>
 				Jenis Transaksi				
 			</td>
 			<td>
@@ -93,7 +71,7 @@ $no = $offset+1;
 			<td widtd="90px">
 				Penghadap <br>
 				NIK <br>
-				No Tlp <br>				
+				Tlp <br>				
 			</td>
 			<td>
 				: <?= $transactionData['NamaLengkap'] ?> <br>
