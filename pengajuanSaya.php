@@ -45,13 +45,16 @@ $no = $offset+1;
 	<div class="box">
 		<?php 
 		
+		 $transactionData['AktaStatusId'] == 4 ? $warna = 'red' : $warna='green';
+
+		
+		?><b style="color:<?= $warna ?>"><?=$transactionData['Status']?> </b>
+		<?php 
 		if ($transactionData['AktaStatusId'] == 3) {
-			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button special fit icon fa-print" target="blank">Cetak</a><?php
-		} else {
-			($transactionData['AktaStatusId'] == 4) ? $warna = 'red' : $warna='green';
-			?><b style="color:<?= $warna ?>"><?=$transactionData['Status']?></b> <?php
+			?>| <a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class=" icon fa-print" target="blank"> Cetak</a><?php
 		}
 		?>
+		
 	<table>
 		<tr>
 			<td width="180px">

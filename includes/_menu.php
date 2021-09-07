@@ -22,20 +22,9 @@
 			}
 
 			if(hasAccess($_SESSION['user_id'], 2)) {
-					?>
-					<li><a href="#">Konfirmasi <span class="icon fa-angle-down"></span></a>
-						<ul>
-							<li><a href="a_konfirm2.php">Konfirmasi Transaksi Akta</a></li>		
-						</ul>
-					</li>
-					<li><a href="#">List Data <span class="icon fa-angle-down"></span></a>
-						<ul>
-							<li><a href="a_studios.php">Data Akta</a></li>
-							<li><a href="a_equips.php">Data Transaki Keuangan</a></li>
-							<li><a href="a_usersData.php">Data Penghadap</a></li>
-						</ul>
-					</li>
-					<li> | </li>
+			?>
+			<li><a href="listPengajuanAkta.php">List Pengajuan Akta</a></li>						
+			<li> | </li>
 			<?php
 			} 
 

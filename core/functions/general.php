@@ -62,7 +62,7 @@ function tambahData($tambahData, $table) {
 }
 
 function adminProtect() {
-	if(!(hasAccess($_SESSION['user_id'], 2) || hasAccess($_SESSION['user_id'], 1))){
+	if(!(hasAccess($_SESSION['user_id'], 2) || hasAccess($_SESSION['user_id'], 3))){
 		header("Location: ./");
 		exit();
 	}
