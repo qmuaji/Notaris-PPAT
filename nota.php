@@ -6,66 +6,70 @@ include 'includes/_header.php';
 
 <?php 
 if(isset($_SESSION['cetakNota'])){
-	$book_code 	= $_SESSION['cetakNota'];
-	$query 		= mysql_query("SELECT * FROM transactions WHERE md5(book_code)='$book_code'");
-	$row 		= mysql_fetch_assoc($query);		
-	$query2 	= mysql_query("SELECT i_time  FROM bookings WHERE md5(book_code)='$book_code'");
+	$KdTransaksi = $_SESSION['cetakNota'];
+	$query 		 = mysql_query("SELECT * 
+								FROM UserAktaTransaction, User, JenisAkta, Document 
+								WHERE UserAktaTransaction.PenghadapId=User.Id 
+								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
+								AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
+								AND md5(userAktaTransaction.KdTransaksi)='$KdTransaksi'");
+	$transactionData 		= mysql_fetch_assoc($query);		
 	
 ?>
-<div class="alert">Terimakasih, pemesanan kamu berhasil <i class="icon fa-smile-o"></i> periksa kembali detail pemesanan kamu di bawah ini!</div>
-<div class="container" style="margin-top:-80px" id="main">
+<div class="alert">Terimakasih, Pengajuan Akta berhasil disubmit <i class="icon fa-smile-o"></i> periksa kembali detail Pengajuan Akta dibawah ini!</div>
+
+<div style="margin-top:-30px" id="main" class="container">
+	
 	<div class="box">
-		<h2 align="center" style="margin-top:-40px">Lan's <i class="icon fa-cube"></i> Reservation <br> #<?php echo $row['book_code'] ?></h2>
+		<h2 align="center" style="margin-top:-40px">Notaris PPAT Rian Erza  <br> #<?=$transactionData['KdTransaksi'] ?></h2>
+
 	<table>
 		<tr>
 			<td width="180px">
-				Kode Pesan <br>
-				Tgl Pesan <br>
-				Nama Ruangan				
+				Kode Transaksi <br>
+				Tgl Transaksi <br>
+				Jenis Transaksi				
 			</td>
 			<td>
-				: <?php echo $row['book_code'] ?> <br>
-				: <?php echo date('d F, Y', strtotime($row['book_date'])) ?>  <br>
-				: <?php echo $row['studio_name'] ?>				
+				: <?= $transactionData['KdTransaksi'] ?> <br>
+				: <?= date('d F, Y', strtotime($transactionData['TglTransaksi'])) ?>  <br>
+				: <?= $transactionData['JenisAkta'] ?>
+				
 			</td>
 			
-			<td width="90px">
-				Nama <br>
-				Tlp <br>
-				Email <br>				
+			<td widtd="90px">
+				Penghadap <br>
+				NIK <br>
+				Tlp <br>				
 			</td>
 			<td>
-				: <?php echo $row['first_name'] ?> <br>
-				: <?php echo $row['tlp'] ?> <br>
-				: <?php echo $row['email'] ?>				
+				: <?= $transactionData['NamaLengkap'] ?> <br>
+				: <?= $transactionData['NIK'] ?> <br>
+				: <?= $transactionData['NoTlp'] ?>				
 			</td>
 		</tr>
 	</table>
 
 	<table class="alt" style="margin-top:-25px">
 		<tr align="center">
-			<td>Jam Sewa</td>
-			<td>Harga / jam (Rp)</td>
-			<td>Total Bayar (Rp)</td>
+			<td>Deskripsi</td>
+			<td>Dokumen persyaratan</td>
+			<td>Status</td>
 		</tr>
 		<tr align="center">
 			<td>
-			<?php 
-			while($row2 = mysql_fetch_assoc($query2)) {
-				$end = $row2['i_time'] + 1;
-				echo $row2['i_time'],":00 - $end:00"."<br>";
-			}
+			<?php
+			(!empty($transactionData['Deskripsi'])) ? $desc=$transactionData['Deskripsi'] : $desc='-';
+				echo $desc;
 			?>
 			</td>
-			<td>
-				<?php echo rupiah($row['price']) ." X ".$row['q']?>
-			</td>
-			<td><?php echo rupiah($row['total'])?></td>
+			<td> <a class="icon fa-file" href="<?= $transactionData['DocPersyaratan']?>" target="blank"> Lihat Dokument</a></td>	
+			<td> Diperiksa</td>	
 		</tr>
 	</table>
-	<a href="cetakNota.php" class="button fit icon fa-print" target="blank">Cetak</a>
-	<sub>*Bukti pemesanan akan hangus jika tidak digunakan pada jam yang telah ditentukan!</sub>
-	</div>
+	<a href="pengajuanSaya.php" class="button fit special" target="blank">Pengajuan Saya</a>
+	</div>				   
+	
 </div>
 <?php
 } else {

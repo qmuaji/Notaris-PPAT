@@ -45,13 +45,16 @@ if(!empty($_POST)) {
 			if(in_array($fileExtn, $tipeFile)) {
 			uploadDocumentFile($userData['Id'], $fileTmp, $fileExtn, $kdTransaksi);
 			}
-			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {				
+			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {	
+
 				$alert[] = "Pengajuan Akta berhasil di submit! <a href='pengajuanSaya.php'> Lihat Status</a>";
-				email($userData['Email'], 'Pengajuan Akta '.$appName.' - ' . $kdTransaksi, "Dear {$userData['NamaLengkap']}, \n\nTerimakasih telah melakukan pengajuan Transaksi Akta. \n Kode transaksi pengajuan anda: {$kdTransaksi}\n\n ~".$appName);
-					// header("Location: pengajuanSaya.php");
+				email($userData['Email'], 'Pengajuan Akta '.$appName.' - ' . $kdTransaksi, "Dear {$userData['NamaLengkap']}, \n\nTerimakasih telah melakukan pengajuan Transaksi Akta. Anda bisa melacak status pengajuan dengan kode transaksi pengajuan anda: {$kdTransaksi}\n\n ~".$appName);
 				$jenisAktaId = '';
 				$npwp 		 = '';
 				$deskripsi 	 = '';
+
+				$_SESSION['cetakNota'] = md5($kdTransaksi);
+				header("Location: nota.php");
 			} else {
 				$alert[] = "Pengajuan Akta gagal di submit! <i class='icon fa-frown-o'></i>";
 			}	

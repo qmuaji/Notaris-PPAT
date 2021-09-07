@@ -44,8 +44,6 @@ $no = $offset+1;
 	?>
 	<div class="box">
 		<?php 
-		$today_dt = new DateTime(date('Y-m-d'));
-		$expire_dt = new DateTime($transactionData['TglTransaksi']);
 		
 		if ($transactionData['AktaStatusId'] == 3) {
 			?><a href="cetakNota.php?code=<?= md5($transactionData['KdTransaksi']) ?>" class="button special fit icon fa-print" target="blank">Cetak</a><?php
