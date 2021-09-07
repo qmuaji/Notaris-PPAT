@@ -104,7 +104,7 @@ if(!empty($alert)) echo outputErrors($alert);
 							<select name="JenisAktaId" required>
 								<?php getJenisAkta($jenisAktaId) ?>
 							</select>
-							NPWP*
+							NPWP Pribadi/PT*
 							<input type="text" name="NPWP" placeholder="NPWP*" required maxlength="20" value="<?= $npwp ?>">
 							Upload Dokumen Persyaratan*
 							<input type="file" name="DocPersyaratan" accept="files/*"><br>

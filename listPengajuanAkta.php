@@ -29,60 +29,80 @@ adminProtect();
 						</ul>
 					</div>
 				</div>
+					<h6>
+						
+						<table id="users">
+							<thead>
+								<tr>
+									<th>Kode Transaksi</th>
+									<th>Tgl Transaksi</th>
+									<th>Jenis Transaksi</th>
+									<th>Nama Penghadap</th>
+									<th>NIK / No KTP</th>
+									<th>No Tlp</th>
+									<th>NPWP Pribadi/PT</th>
+									<th>Harga (Rp)</th>
+									<th>Sudah Bayar (Rp)</th>
+									<th>No SK/SP</th>
+									<th>Akta</th>
+									<th>STATUS</th>
+									<th>Opsi</th>
+								</tr>
+							</thead>
 
-					<table id="users">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Kode Transaksi</th>
-								<th>Tanggal Transaksi</th>
-								<th>Jenis Transaksi</th>
-								<th>Nama Penghadap</th>
-								<th>NIK / No KTP</th>
-								<th>NPWP</th>
-								<th>Dokument Persyaratan</th>
-								<th>No SK</th>
-							</tr>
-						</thead>
+							<tbody>
+							<?php 
+							$transactionData = mysql_query("SELECT * 
+									FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document
+									WHERE User.Id=UserAktaTransaction.PenghadapId 
+									AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
+									AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+									AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
+									ORDER BY TglTransaksi DESC");
+							$total = mysql_num_rows($transactionData);
 
-						<tbody>
-						<?php 
-						$transactionData = mysql_query("SELECT * 
-								FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document
-								WHERE User.Id=UserAktaTransaction.PenghadapId 
-								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
-								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
-								AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
-								ORDER BY TglTransaksi DESC");
-						$total = mysql_num_rows($transactionData);
-
-						if(mysql_num_rows($transactionData) == 0) echo "<h3><span class='icon fa-search'></span> Data Penghadap masih kosong.</h3><p> Silahkan tambahkan terlebih dahulu</p>";
-						while($row = mysql_fetch_assoc($transactionData)){
+							if(mysql_num_rows($transactionData) == 0) echo "<h3><span class='icon fa-search'></span> Data Penghadap masih kosong.</h3><p> Silahkan tambahkan terlebih dahulu</p>";
+							while($row = mysql_fetch_assoc($transactionData)){
+								?>
+								<tr>
+									<td><?= $row['KdTransaksi'] ?></td>
+									<td><?= date('d/m/y', strtotime($row['TglTransaksi'])) ?></td>
+									<td><?= $row['JenisAkta'] ?></td>
+									<td><?= $row['NamaLengkap'] ?></td>
+									<td><?= $row['NIK'] ?></td>
+									<td><?= $row['NoTlp'] ?></td>
+									<td><?= $row['NPWP'] ?></td>
+									<td><?= rupiah($row['Harga']) ?></td>
+									<td><?= rupiah($row['SudahBayar']) ?></td>
+									<td><?= $row['NoSK'] ?></td>
+									<td> <a href="<?= $row['DocAkta'] ?>" class="icon fa-download"> Download</a></td>
+									<?php 
+									if($row['Status'] == 'Diperiksa'){
+										$warna='black';
+									}elseif($row['Status']== 'Diproses'){
+										$warna='orange';
+									}elseif($row['Status']== 'Ditolak'){
+										$warna='red';
+									}else{
+										$warna='green';
+									}
+									?>
+									<td style="color:<?= $warna ?>"><?= $row['Status'] ?></td>
+									<td><a href="a_userEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a href="#" class="icon fa-trash"></td>
+								</tr>
+								<?php
+							}
 							?>
+							</tbody>
 							<tr>
-								<td><?= '1' ?></td>
-								<td><?= $row['KdTransaksi'] ?></td>
-								<td><?= $row['TglTransaksi'] ?></td>
-								<td><?= $row['JenisAkta'] ?></td>
-								<td><?= $row['NamaLengkap'] ?></td>
-								<td><?= $row['NIK'] ?></td>
-								<td><?= $row['NPWP'] ?></td>
-								<td> <a href="<?= $row['DocPersyaratan'] ?>" class="icon fa-download"> Download</a></td>
-								<td><?= $row['NoSK'] ?></td>
-								<td><a href="a_userEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a href="#" class="icon fa-trash"></td>
+								<td colspan="2" align="center"><b>Total Penghadap</b></td>
+								<td align="right">
+									<b> <?=$total ?></b>
+								</td>
+								<td></td>
 							</tr>
-							<?php
-						}
-						?>
-						</tbody>
-						<tr>
-							<td colspan="2" align="center"><b>Total Penghadap</b></td>
-							<td align="right">
-								<b> <?=$total ?></b>
-							</td>
-							<td></td>
-						</tr>
-					</table>
+						</table>
+					</h6>
 			</section>
 
 		</div>
