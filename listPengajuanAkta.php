@@ -95,7 +95,7 @@ adminProtect();
 							?>
 							</tbody>
 							<tr>
-								<td colspan="2" align="center"><b>Total Penghadap</b></td>
+								<td colspan="2" align="center"><b>Total Data</b></td>
 								<td align="right">
 									<b> <?=$total ?></b>
 								</td>
