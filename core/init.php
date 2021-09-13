@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 date_default_timezone_set("Asia/Bangkok");
 
 $appName = "Notaris PPAT Rian Erza"; //Variable super GLOBAL 
-$host	 = "ppat.qmuaji.com.test"; //Variable super GLOBAL
+$host	 = "notaris-ppat.test/"; //Variable super GLOBAL
 
 require 'dbConnect.php';
 require 'functions/general.php';
