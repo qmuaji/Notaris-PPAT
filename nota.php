@@ -12,7 +12,7 @@ if(isset($_SESSION['cetakNota'])){
 								WHERE UserAktaTransaction.PenghadapId=User.Id 
 								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
-								AND md5(userAktaTransaction.KdTransaksi)='$KdTransaksi'");
+								AND md5(UserAktaTransaction.KdTransaksi)='$KdTransaksi'");
 	$transactionData 		= mysql_fetch_assoc($query);		
 	
 ?>
