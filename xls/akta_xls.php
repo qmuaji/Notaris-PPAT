@@ -60,7 +60,7 @@ while($row=mysql_fetch_array($hasil)){
        ->setCellValue("J$baris", $row['Keterangan'])
        ->setCellValue("K$baris", $row['SisaTagihan'])
        ->setCellValue("L$baris", $row['NamaLengkap'])
-       ->setCellValue("M$baris", $row['AdminId']);
+       ->setCellValue("M$baris", $row['PembuatAkta']);
        ->setCellValue("N$baris", $row['Status']);
   $baris = $baris + 1;
 }
