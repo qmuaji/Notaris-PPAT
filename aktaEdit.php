@@ -4,23 +4,8 @@ protectPage();
 adminProtect();
 
 if(isset($_GET['id'])) {
-	$id 		= (int)$_GET['id'];
-	$row 		= mysql_fetch_assoc(mysql_query("SELECT *, AktaStatus.id as StatusId
-									FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document
-									WHERE User.Id=UserAktaTransaction.PenghadapId 
-									AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
-									AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
-									AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
-									AND UserAktaTransaction.Id = $id"));
-	$jenisAktaId 	= $row['JenisAktaId'];
-	$npwp 			= $row['NPWP'];
-	$deskripsi 		= $row['Deskripsi'];
-	$aktatStatusId	= $row['StatusId'];
-	$noSK 			= $row['NoSK'];
-	$tglAkta 		= $row['TglAkta'];
-	$harga 			= $row['Harga'];
-	$sudahBayar		= $row['SudahBayar'];
 
+	$id 		= (int)$_GET['id'];
 
 	if(!empty($_POST)) {
 
@@ -32,14 +17,16 @@ if(isset($_GET['id'])) {
 			}
 		}
 
+		$kdTransaksi 		= trim($_POST['KdTransaksi']);
 		$jenisAktaId 		= trim($_POST['JenisAktaId']);
 		$npwp 				= trim($_POST['NPWP']);
+		$namaAkta 			= trim($_POST['NamaAkta']);
 		$deskripsi 			= trim($_POST['Deskripsi']);
 		$aktatStatusId		= trim($_POST['AktaStatusId']);
 		$noSK 				= trim($_POST['NoSK']);
 		$tglAkta 			= trim($_POST['TglAkta']);
-		$harga  			= trim($_POST['Harga']);
-		$sudahBayar			= trim($_POST['SudahBayar']);
+		$harga  			= (int)trim($_POST['Harga']);
+		$sudahBayar			= (int)trim($_POST['SudahBayar']);
 		$tipeFile = array('pdf', 'doc', 'docx');
 		$fileName = $_FILES['DocAkta']['name'];
 		$extn 	  = explode('.', $fileName);
@@ -53,37 +40,59 @@ if(isset($_GET['id'])) {
 				$userAktaTransaction = array(
 					'JenisAktaId'	=> $jenisAktaId,
 					'NPWP' 			=> $npwp,
+					'NamaAkta' 		=> $namaAkta,
 					'Deskripsi'		=> $deskripsi,
 					'AktaStatusId'	=> $aktatStatusId,
 					'NoSK'			=> $noSK,
 					'TglAkta'		=> $tglAkta,
 					'Harga'			=> $harga,
+					'PembuatAkta'	=> $userData['NamaLengkap'],
 					'SudahBayar'	=> $sudahBayar
 				);
 				
 				if(in_array($fileExtn, $tipeFile)) {
-					uploadAkta($fileTmp, $fileExtn, $row['KdTransaksi']);
+					uploadAkta($fileTmp, $fileExtn, $kdTransaksi);
 				}
 				
+				if($harga == $sudahBayar){
+					mysql_query("UPDATE UserAktaTransaction SET Keterangan='LUNAS', SisaTagihan=0 WHERE Id={$id}");
+				} else {
+					$sisaTagihan = $harga - $sudahBayar;
+					mysql_query("UPDATE UserAktaTransaction SET Keterangan='BELUM LUNAS', SisaTagihan={$sisaTagihan} WHERE Id={$id}");
+				}
+
 				if(ubahData('UserAktaTransaction', $userAktaTransaction,  'Id', $id)) {	
 
+					$alert[] = "Pengajuan Akta berhasil di update!";
 					
-
-					if((int)$harga == (int)$sudahBayar){
-						mysql_query("UPDATE UserAktaTransaction SET Keterangan='LUNAS', SisaTagihan=0 WHERE Id={$id}");
-					} else {
-						mysql_query("UPDATE UserAktaTransaction SET Keterangan='BELUM LUNAS', SisaTagihan={(int)$harga-(int)$sudahBayar} WHERE Id={$id}");
-					}
-					header('Location: '.$_SERVER['REQUEST_URI']);
-
-					$alert[] = "Pengajuan Akta berhasil di update! <a href='pengajuanSaya.php'> Lihat Status</a>";
-					email($userData['Email'], 'Pengajuan Akta '.$appName.' - ' . $row['KdTransaksi'], "Dear {$userData['NamaLengkap']}, \n\nTerimakasih telah melakukan pengajuan Transaksi Akta. Anda bisa melacak status pengajuan dengan kode transaksi pengajuan anda: {$row['KdTransaksi']}\n<a href='ppat.qmuaji.com/pengajuanSaya.php'> Lihat Status</a>\n\n ~".$appName);
+					email($userData['Email'], 'Pengajuan Akta '.$appName.' - ' . $kdTransaksi, "Dear {$userData['NamaLengkap']}, \n\nTerimakasih telah melakukan pengajuan Transaksi Akta. Anda bisa melacak status pengajuan dengan kode transaksi pengajuan anda: {$kdTransaksi}\n<a href='ppat.qmuaji.com/pengajuanSaya.php'> Lihat Status</a>\n\n ~".$appName);
+					//header('Location: '.$_SERVER['REQUEST_URI']);
 				} else {
 					$alert[] = "Pengajuan Akta gagal di update! <i class='icon fa-frown-o'></i>";
 				}	
 			}
 		}
 	} 
+	
+	$row 		= mysql_fetch_assoc(mysql_query("SELECT *, AktaStatus.id as StatusId
+									FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document
+									WHERE User.Id=UserAktaTransaction.PenghadapId 
+									AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
+									AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+									AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
+									AND UserAktaTransaction.Id = $id"));
+	$jenisAktaId 	= $row['JenisAktaId'];
+	$npwp 			= $row['NPWP'];
+	$namaAkta		= $row['NamaAkta'];
+	$deskripsi 		= $row['Deskripsi'];
+	$aktatStatusId	= $row['StatusId'];
+	$noSK 			= $row['NoSK'];
+	$tglAkta 		= $row['TglAkta'];
+	$harga 			= $row['Harga'];
+	$sudahBayar		= $row['SudahBayar'];
+	$kdTransaksi    = $row['KdTransaksi'];
+
+
 
 	include 'includes/_header.php';
 	if(!empty($alert)) echo outputErrors($alert);
@@ -92,12 +101,13 @@ if(isset($_GET['id'])) {
 		<div class="row">			
 			<div class="col-12">
 				<section class="box">
-					<h3>Formulir Pengajuan Akta #<?=$row['KdTransaksi']?></h3>
+					<h3>Formulir Pengajuan Akta #<?=$kdTransaksi?></h3>
 					<form action="" method="post" autocomplete="off" enctype="multipart/form-data">			
 						<div class="row">
 							<div class="col-6 col-12-mobilep">
 								No KTP*
 								<input type="text" value="<?= $row['NIK'] ?>" disabled minlength="7" maxlength="20">
+								<input name="KdTransaksi" type="hidden" value="<?= $kdTransaksi ?>" disabled>
 								Nama Lengkap*
 								<input type="text" value="<?= $row['NamaLengkap'] ?>" disabled minlength="3" maxlength="20">
 								No telepon* 
@@ -119,11 +129,21 @@ if(isset($_GET['id'])) {
 								</select>
 								NPWP Pribadi/PT*
 								<input type="text" name="NPWP" placeholder="NPWP" required maxlength="20" value="<?= $npwp ?>">
-								Dokumen Persyaratan : <a href="<?= $row['DocPersyaratan'] ?>" class="icon fa-download"> Download</a><hr>
+								Nama Akta
+								<input type="text" name="NamaAkta" placeholder="Nama Akta" value="<?= $namaAkta ?>">
+								Dokumen Persyaratan : <a href="<?= $row['DocPersyaratan'] ?>" class="icon fa-download"> Download</a><br>
+								<?php
+								if(!empty($row['DocAkta'])){
+									$doc = "<a target='_blank' href='{$row['DocAkta']}' class='icon fa-download'> Download</a>";
+								}else {
+									$doc = '-';
+								}
+								?>								
+								Dokumen Akta : <?=$doc?> <hr>
 								Upload Dokumen Akta*
 								<input type="file" name="DocAkta" accept="files/*"><br>
 								Deskripsi*
-								<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" required><?= $deskripsi ?></textarea>
+								<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" ><?= $deskripsi ?></textarea>
 							</div>
 							<div class="col-6 col-12-mobilep">	
 								Status Akta

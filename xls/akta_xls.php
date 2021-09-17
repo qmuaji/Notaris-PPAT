@@ -40,7 +40,8 @@ $objPHPExcel->setActiveSheetIndex(0)
        ->setCellValue('J1', 'Keterangan')
        ->setCellValue('K1', 'Sisa Tagihan')
        ->setCellValue('L1', 'Nama Penghadap')
-       ->setCellValue('M1', 'Status');
+       ->setCellValue('M1', 'Pembuat Akta');
+       ->setCellValue('N1', 'Status');
  
 $baris = 2;
 $no = 0;			
@@ -59,7 +60,8 @@ while($row=mysql_fetch_array($hasil)){
        ->setCellValue("J$baris", $row['Keterangan'])
        ->setCellValue("K$baris", $row['SisaTagihan'])
        ->setCellValue("L$baris", $row['NamaLengkap'])
-       ->setCellValue("M$baris", $row['Status']);
+       ->setCellValue("M$baris", $row['AdminId']);
+       ->setCellValue("N$baris", $row['Status']);
   $baris = $baris + 1;
 }
  

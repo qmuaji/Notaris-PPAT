@@ -73,7 +73,14 @@ adminProtect();
 									<td><?= rupiah($row['Harga']) ?></td>
 									<td><?= rupiah($row['SudahBayar']) ?></td>
 									<td><?= $row['NoSK'] ?></td>
-									<td> <a target="_blank" href="<?= $row['DocAkta'] ?>" class="icon fa-download"> Download</a></td>
+									<?php
+									if(!empty($row['DocAkta'])){
+										$doc = "<a target='_blank' href='{$row['DocAkta']}' class='icon fa-download'></a>";
+									}else {
+										$doc = '-';
+									}
+									?>
+									<td><?=$doc?> </td>
 									<?php 
 									if($row['Status'] == 'Diperiksa'){
 										$warna='black';
