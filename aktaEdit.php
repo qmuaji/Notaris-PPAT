@@ -107,7 +107,7 @@ if(isset($_GET['id'])) {
 							<div class="col-6 col-12-mobilep">
 								No KTP*
 								<input type="text" value="<?= $row['NIK'] ?>" disabled minlength="7" maxlength="20">
-								<input name="KdTransaksi" type="hidden" value="<?= $kdTransaksi ?>" disabled>
+								<input name="KdTransaksi" type="hidden" value="<?= $kdTransaksi ?>">
 								Nama Lengkap*
 								<input type="text" value="<?= $row['NamaLengkap'] ?>" disabled minlength="3" maxlength="20">
 								No telepon* 
