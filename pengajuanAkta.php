@@ -20,6 +20,7 @@ if(!empty($_POST)) {
 		$jenisAktaId 		= trim($_POST['JenisAktaId']);
 		$npwp 				= trim($_POST['NPWP']);
 		$deskripsi 			= trim($_POST['Deskripsi']);
+		$metodeBayar		= trim($_POST['MetodeBayar']);
 		$kdTransaksi 		= getNota();
 
 		$tipeFile = array('pdf', 'doc', 'docx');
@@ -41,11 +42,12 @@ if(!empty($_POST)) {
 				'PenghadapId' 	=> $userData['Id'],
 				'NPWP' 			=> $npwp,
 				'NIK' 			=> $userData['NIK'],
+				'MetodeBayar'	=> $metodeBayar,
 				'Deskripsi'		=> $deskripsi
 			);
 			
 			if(in_array($fileExtn, $tipeFile)) {
-			uploadDocumentFile($userData['Id'], $fileTmp, $fileExtn, $kdTransaksi);
+			uploadDocumentFile($fileTmp, $fileExtn, $kdTransaksi);
 			}
 			if(tambahData($userAktaTransaction, 'UserAktaTransaction')) {	
 
@@ -111,7 +113,13 @@ if(!empty($alert)) echo outputErrors($alert);
 							Upload Dokumen Persyaratan*
 							<input type="file" name="DocPersyaratan" accept="files/*"><br>
 							Deskripsi*
-							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" required><?= $deskripsi ?></textarea>
+							<textarea name="Deskripsi" placeholder="Deskripsi" rows="2" maxlength="225" required><?= $deskripsi ?></textarea>
+							Metode Bayar
+							<select name="MetodeBayar" required>
+								<option value='' >- Pilih -</option>
+								<option value='TUNAI' >TUNAI</option>
+								<option value='TRANSFER' >TRANSFER</option>
+							</select>
 						</div>
 					</div>		
 					<input type="submit" value="Submit Pengajuan Akta" class="special fit" onclick="return confirm('Submit Pengajuan Akta?')">		

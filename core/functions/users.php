@@ -12,10 +12,16 @@ function hasAccess($user_id, $role){
 }
 
 
-function uploadDocumentFile($user_id, $fileTmp, $fileExtn, $kdTransaksi) {
+function uploadDocumentFile($fileTmp, $fileExtn, $kdTransaksi) {
 	$pathFile = sanitize('documents/persyaratan_'.$kdTransaksi.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
 
 	mysql_query("INSERT INTO Document (DocPersyaratan, kdTransaksi) VALUES ('$pathFile', '$kdTransaksi')");
+	move_uploaded_file($fileTmp, $pathFile);
+}
+
+function uploadAkta($fileTmp, $fileExtn, $kdTransaksi) {
+	$pathFile = sanitize('documents/persyaratan_'.$kdTransaksi.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
+	mysql_query("UPDATE Document SET DocAkta='{$pathFile}' WHERE kdTransaksi='{$kdTransaksi}'");
 	move_uploaded_file($fileTmp, $pathFile);
 }
 

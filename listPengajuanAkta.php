@@ -38,7 +38,6 @@ adminProtect();
 									<th>Tgl Transaksi</th>
 									<th>Jenis Transaksi</th>
 									<th>Nama Penghadap</th>
-									<th>NIK / No KTP</th>
 									<th>No Tlp</th>
 									<th>NPWP Pribadi/PT</th>
 									<th>Harga (Rp)</th>
@@ -69,13 +68,12 @@ adminProtect();
 									<td><?= date('d/m/y', strtotime($row['TglTransaksi'])) ?></td>
 									<td><?= $row['JenisAkta'] ?></td>
 									<td><?= $row['NamaLengkap'] ?></td>
-									<td><?= $row['NIK'] ?></td>
 									<td><?= $row['NoTlp'] ?></td>
 									<td><?= $row['NPWP'] ?></td>
 									<td><?= rupiah($row['Harga']) ?></td>
 									<td><?= rupiah($row['SudahBayar']) ?></td>
 									<td><?= $row['NoSK'] ?></td>
-									<td> <a href="<?= $row['DocAkta'] ?>" class="icon fa-download"> Download</a></td>
+									<td> <a target="_blank" href="<?= $row['DocAkta'] ?>" class="icon fa-download"> Download</a></td>
 									<?php 
 									if($row['Status'] == 'Diperiksa'){
 										$warna='black';
@@ -88,7 +86,7 @@ adminProtect();
 									}
 									?>
 									<td style="color:<?= $warna ?>"><?= $row['Status'] ?></td>
-									<td><a href="a_userEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a href="#" class="icon fa-trash"></td>
+									<td><a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a href="#" class="icon fa-trash"></td>
 								</tr>
 								<?php
 							}

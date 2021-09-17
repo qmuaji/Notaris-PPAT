@@ -15,6 +15,21 @@ function getJenisAkta($kode) {
 	}
 }
 
+function getAktaStatus($kode) {
+
+	echo "<option value='' >- Pilih -</option>";
+	$query = mysql_query("SELECT Id, Status FROM AktaStatus");
+
+	while ($row = mysql_fetch_row($query)) {
+
+		if ($kode == ""){
+			echo "<option value='$row[0]'> " . ucwords($row[1]) . " </option>";
+		}else{
+			echo "<option value='$row[0]'" . selected($row[0], $kode) . "> " . ucwords($row[1]) . " </option>";
+		}
+	}
+}
+
 function selected($t1, $t2) {
 
 	if(trim($t1) == trim($t2)) return "selected";
