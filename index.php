@@ -1,7 +1,6 @@
 <?php 
 require 'core/init.php';
 include 'includes/_head.php';
-echo"dodol";
 ?>
 <body class="landing">
 	<header id="header" class="alt"><meta http-equiv="Content-Type" content="text/html; charset=utf-8">

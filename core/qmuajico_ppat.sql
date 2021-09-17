@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 04, 2021 at 07:20 PM
+-- Generation Time: Sep 17, 2021 at 01:33 PM
 -- Server version: 5.7.35-log
--- PHP Version: 7.3.28
+-- PHP Version: 7.3.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,7 +51,7 @@ INSERT INTO `AktaStatus` (`Id`, `Status`) VALUES
 
 CREATE TABLE `Document` (
   `Id` int(11) NOT NULL,
-  `TransaksiId` int(11) DEFAULT NULL,
+  `KdTransaksi` varchar(20) DEFAULT NULL,
   `DocPersyaratan` varchar(255) NOT NULL,
   `DocAkta` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -60,10 +60,18 @@ CREATE TABLE `Document` (
 -- Dumping data for table `Document`
 --
 
-INSERT INTO `Document` (`Id`, `TransaksiId`, `DocPersyaratan`, `DocAkta`) VALUES
-(1, 1, 'Documents/persyaratan_040921AAAA_20_02_20-1582163891.pdf', 'Documents/akta_20_02_20-1582163891.pdf'),
-(2, 2, 'Documents/persyaratan_030921BBBB_20_02_20-1582163891.pdf', ''),
-(3, 3, 'Documents/persyaratan_030921CCCC_20_02_20-1582163893.pdf', '');
+INSERT INTO `Document` (`Id`, `KdTransaksi`, `DocPersyaratan`, `DocAkta`) VALUES
+(1, 'RSKY040921', 'Documents/persyaratan_040921AAAA_20_02_20-1582163891.pdf', 'Documents/akta_20_02_20-1582163891.pdf'),
+(2, 'KRSY040921', 'Documents/persyaratan_030921BBBB_20_02_20-1582163891.pdf', ''),
+(3, 'RNSJ040921', 'Documents/persyaratan_030921CCCC_20_02_20-1582163893.pdf', ''),
+(4, '0118040921', 'documents/persyaratan_011804092104_09_21-1630771390.pdf', ''),
+(5, '1189050921', 'documents/persyaratan_118905092105_09_21-1630775074.pdf', ''),
+(6, 'NY1S050921', 'documents/persyaratan_NY1S05092105_09_21-1630804949.docx', ''),
+(7, 'RNR9050921', 'documents/persyaratan_RNR905092105_09_21-1630805720.docx', ''),
+(8, '9SPA050921', 'documents/persyaratan_9SPA05092105_09_21-1630805762.docx', ''),
+(9, 'TU91050921', 'documents/persyaratan_TU9105092105_09_21-1630807651.pdf', ''),
+(10, 'S91I050921', 'documents/persyaratan_S91I05092105_09_21-1630819428.pdf', ''),
+(11, 'RYYU060921', 'documents/persyaratan_RYYU06092106_09_21-1630932058.docx', '');
 
 -- --------------------------------------------------------
 
@@ -125,12 +133,11 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`Id`, `NIK`, `NamaLengkap`, `TmptLahir`, `TglLahir`, `Pekerjaan`, `Alamat`, `NoTlp`, `UserRoleId`, `Password`, `Email`, `LastLogin`, `IsActive`, `CreationDate`, `EmailCode`, `Img`) VALUES
-(1, '327511180480009', 'MIFTAHUL ANAM', 'Banyumas', '1980-04-18', 'Karyawan Swasta', '\"Perum Taman Harmoni Blok A3, Nomor 9, RT 005/RW 007,\r\n Kelurahan Padurenan, Kecamatan Mustika Jaya, Kota Bekasi, Jawa Barat\"\r\n', '0857-1753-3900', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'mifahul@gmail.com', '2021-09-02 10:59:16', 1, '2021-09-01 20:59:16', '', ''),
-(2, '3202241107980000', 'MUHAMMAD RIZAL ARIYANTO', 'Sukabumi', '1998-07-11', 'Wiraswasta', '\"Kp. Cibungur 4, RT 006/RW 001,\r\nKelurahan Talaga Murni, Kecamatan Cibitung, Kabupaten Sukabumi Jawa Barat\"\r\n', '0821-1894-5554', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'mrizal@gmail.com', '0000-00-00 00:00:00', 1, '2021-09-01 20:59:16', '', ''),
+(2, '327511180480009', 'Miftahul Anam', 'Banyumas', '1980-04-18', 'Karyawan Swasta', '&quot;Perum Taman Harmoni Blok A3, Nomor 9, RT 005/RW 007,\r\n Kelurahan Padurenan, Kecamatan Mustika Jaya, Kota Bekasi, Jawa Barat&quot;', '085846291912', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'mifahul@gmail.com', '2021-09-02 10:59:16', 1, '2021-09-01 20:59:16', '', ''),
+(6, '3202241107980000', 'MUHAMMAD RIZAL ARIYANTO', 'Sukabumi', '1998-07-11', 'Wiraswasta', '\"Kp. Cibungur 4, RT 006/RW 001,\r\nKelurahan Talaga Murni, Kecamatan Cibitung, Kabupaten Sukabumi Jawa Barat\"\r\n', '0821-1894-5554', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'mrizal@gmail.com', '0000-00-00 00:00:00', 1, '2021-09-01 20:59:16', '', ''),
 (3, '357818470770001', 'Deta Admin', 'Sukabumi', '1999-09-13', 'Staff Karyawan', 'Jl Indah ke bulan', '+62 858-4629-1912', 2, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'deta@gmail.com', '0000-00-00 00:00:00', 1, '2021-09-01 21:06:18', '', ''),
 (4, '3202241107980021', 'Rian Erza', 'Sukabumi', '1990-09-14', 'Owner Notaris PPAT', 'Jl. Arif Rahman Hakim No.75, Benteng, Kec. Warudoyong, Kota Sukabumi, Jawa Barat 43134', '(0266) 6244564', 3, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'notaris@gmail.com', '0000-00-00 00:00:00', 1, '2021-09-01 21:06:18', '', ''),
-(9, '1727283939', 'Risky Muaji Setya P', 'Sulawesi Tengah', '1990-03-22', 'Rebahan', 'Jl indah ke bulan', '085722442265', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'muaji.risky@gmail.com', '0000-00-00 00:00:00', 1, '2021-09-02 17:18:55', '69672fb51c8796ecaf3d2fc078b5dc6b8fd8f461', ''),
-(10, '', '', '', '0000-00-00', '', '', '', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'muaji.risky@gmail.coms', '0000-00-00 00:00:00', 0, '2021-09-04 09:22:38', 'e180526bf3bd8a4bb5e74f2044449f7710c64e8a', '');
+(7, '1727283939', 'Risky Muaji Setya P', 'Sulawesi Tengah', '1990-03-22', 'Rebahan', 'Jl indah ke bulan', '085722442265', 1, 'f6b6faf5982abf60433b0b88041f9a7d1c096c08', 'muaji.risky@gmail.com', '0000-00-00 00:00:00', 1, '2021-09-02 17:18:55', '69672fb51c8796ecaf3d2fc078b5dc6b8fd8f461', '');
 
 -- --------------------------------------------------------
 
@@ -154,9 +161,9 @@ CREATE TABLE `UserAktaTransaction` (
   `SudahBayar` int(11) NOT NULL,
   `Keterangan` enum('LUNAS','BELUM LUNAS','','') NOT NULL DEFAULT 'BELUM LUNAS',
   `SisaTagihan` int(11) NOT NULL,
-  `MetodeBayar` enum('TUNAI','TRANSFER','','') NOT NULL,
+  `MetodeBayar` enum('TUNAI','TRANSFER','','') DEFAULT NULL,
   `Deskripsi` varchar(255) NOT NULL,
-  `AktaStatusId` int(11) NOT NULL,
+  `AktaStatusId` int(11) NOT NULL DEFAULT '1',
   `AdminId` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -165,9 +172,16 @@ CREATE TABLE `UserAktaTransaction` (
 --
 
 INSERT INTO `UserAktaTransaction` (`Id`, `TglTransaksi`, `KdTransaksi`, `NamaAkta`, `JenisAktaId`, `TglAkta`, `NoAkta`, `NoSK`, `NPWP`, `NIK`, `PenghadapId`, `Harga`, `SudahBayar`, `Keterangan`, `SisaTagihan`, `MetodeBayar`, `Deskripsi`, `AktaStatusId`, `AdminId`) VALUES
-(1, '2021-09-04 07:39:11', '040921AAAA', '', 1, NULL, '', '', '', '3202241107980000', 2, 2000000, 1000000, 'BELUM LUNAS', 1000000, 'TUNAI', 'Pembuatan Akta Pendirian PT Protonema', 1, 3),
-(2, '2021-09-04 07:40:59', '030921BBBB', 'PT. ANGKASA CERAH BERSINAR', 2, '2021-09-04', 'AKP1239', '123123', '123123123123', '3275111804800092', 1, 1500000, 1500000, 'LUNAS', 0, 'TRANSFER', '\"PEMBUATAN AKTA PENDIRIAN\nPT. MAHARAJA BUKIT EMAS\"', 2, 3),
-(3, '2021-09-03 07:44:15', '030921CCCC', '', 0, NULL, '', '', '', '3275111804800091', 0, 0, 0, 'BELUM LUNAS', 0, 'TUNAI', 'PEMBUATAN AKTA KELAHIRAN', 4, 4);
+(5, '2021-07-01 10:04:34', '020721PKPS', 'PT. GOLDEN SAND RESOURCES', 9, '2021-07-09', '5', 'AHU-0043920.AH.01.01.TAHUN 2021', '42.946.919.0-047.000', '357818470770001', 6, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PENDIRIAN PT. GOLDEN SAND RESOURCES', 3, 2),
+(4, '2021-07-01 09:03:10', '030721CVRG', 'CV. INDO RAJUT GROSIR', 6, '2021-07-07', '5', 'AHU-0045730-AH.01.14.TAHUN 2021', '42.967.100.1-405.000', '3202241107980000', 2, 2500000, 2500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PENDIRIAN CV. INDO RAJUT GROSIR', 3, 2),
+(3, '2021-09-03 00:44:15', '030921CCCC', 'PT. ANGKASA CERAH BERSINAR', 9, '2021-07-05', '3', 'AHU-0038270.AH.01.02.TAHUN 2021', '84.806.948.0-047.000', '3275111804800091', 6, 4500000, 4500000, 'LUNAS', 0, 'TUNAI', 'PEMBUATAN AKTA PERUBAHAN JENIS PERSEROAN, PERALIHAN SAHAM, MAKSUD DAN TUJUAN PT.ACB', 3, 3),
+(2, '2021-09-04 00:40:59', '030921BBBB', 'PT. MAHARAJA BUKIT EMAS', 1, '2021-07-05', '2', 'AHU-0043096.AH.01.01.TAHUN 2021', '42.900.166.2-047.000', '357818470770001', 6, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', '\"PEMBUATAN AKTA PENDIRIAN\nPT. MAHARAJA BUKIT EMAS\"', 3, 2),
+(1, '2021-09-12 02:02:40', '300621PKPS', 'PT. TEXMODA', 9, '2021-07-03', '1', 'AHU-AH.01.03-0416632', '03.042.464-2043.000', '327511180480009', 1, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', '', 3, 2),
+(6, '2021-06-30 18:22:29', 'NY1S050921', 'PT. KAYUMAS ANUGRAH JAYA', 9, '2021-07-08', '6', 'AHU-AH.01.03-0427378', '91.105.015.1-047.000', '357818470770001', 6, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PERUBAHAN PEMEGANG SAHAM PT. KAYUMAS ANUGRAH JAYA', 3, 2),
+(7, '2021-09-04 18:35:20', 'RNR9050921', 'PT. DELIMA SISMA MEDIKA', 9, '2021-07-09', '7', 'AHU-AH.01.03-0427472', '02.018.642.5-408.000', '327503201040024', 7, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PERUBAHAN PEMEGANG SAHAM PT. DELIMA SISMA MEDIKA', 3, 2),
+(8, '2021-09-04 18:36:02', '9SPA050921', 'PT. HARUM SISMA MEDIKA', 6, '2021-07-09', '8', 'AHU-AH.01.03-0427528', '02.346.154.4048.000', '327503201040024', 7, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PERUBAHAN PEMAGANG SAHAM PT. HARUM SISMA MEDIKA', 3, 2),
+(9, '2021-09-04 19:07:31', 'TU91050921', 'PT. KELUARGA MULYA', 6, '2021-07-09', '9', 'AHU-0040051.AH.01.02.TAHUN 2021', '02.381.060.9-048.000', '327503201040024', 7, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PERUBAHAN MAKSUD DAN TUJUAN PT. KELAURGA MULYA', 3, 2),
+(10, '2021-07-08 19:45:19', '090721PKPS', 'PT. SISMADI SUKMUL', 6, '2021-07-09', '10', 'AHU-0040069.AH.01.02.TAHUN 2021', '01.308.712.7-042.000', '327503201040024', 7, 4500000, 4500000, 'LUNAS', 0, 'TRANSFER', 'PEMBUATAN AKTA PERUBAHAN MAKSUD DAN TUJUAN PT. SISMADI SUKMUL', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -251,7 +265,7 @@ ALTER TABLE `AktaStatus`
 -- AUTO_INCREMENT for table `Document`
 --
 ALTER TABLE `Document`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `JenisAkta`
@@ -269,7 +283,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT for table `UserAktaTransaction`
 --
 ALTER TABLE `UserAktaTransaction`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `UserRole`

@@ -8,7 +8,7 @@ $deskripsi='';
 
 if(!empty($_POST)) {
 
-	$requiredFields = array('JenisAktaId', 'DocPersyaratan', 'NPWP', 'NIK');
+	$requiredFields = array('JenisAktaId', 'DocPersyaratan', 'NPWP', 'NIK', Deskripsi);
 	foreach($_POST as $key=>$value) {
 		if(empty($value) && in_array($key, $requiredFields)){
 			$alert[] = "Silahkan isi bagian yang ditandai * <i class='icon fa-smile-o'></i>";
@@ -28,7 +28,9 @@ if(!empty($_POST)) {
 		$fileExtn = strtolower(end($extn));
 		$fileTmp  = $_FILES['DocPersyaratan']['tmp_name'];
 
-		if(!in_array($fileExtn, $tipeFile)) {
+		if(empty($fileName)) {
+			$alert[] = "Dokumen Persyaratan tidak boleh kosong!";
+		} else if(!in_array($fileExtn, $tipeFile)) {
 			$alert[] = "Tipe file yang di perbolehkan: ". implode(', ', $tipeFile);
 		}
 
@@ -105,14 +107,14 @@ if(!empty($alert)) echo outputErrors($alert);
 								<?php getJenisAkta($jenisAktaId) ?>
 							</select>
 							NPWP Pribadi/PT*
-							<input type="text" name="NPWP" placeholder="NPWP*" required maxlength="20" value="<?= $npwp ?>">
+							<input type="text" name="NPWP" placeholder="NPWP" required maxlength="20" value="<?= $npwp ?>">
 							Upload Dokumen Persyaratan*
 							<input type="file" name="DocPersyaratan" accept="files/*"><br>
-							Deskripsi
+							Deskripsi*
 							<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" ><?= $deskripsi ?></textarea>
 						</div>
 					</div>		
-					<input type="submit" value="Submit Pengajuan Akta" class="special fit">		
+					<input type="submit" value="Submit Pengajuan Akta" class="special fit" onclick="return confirm('Submit Pengajuan Akta?')">		
 				</form>
 			</section>		
 		</div>
