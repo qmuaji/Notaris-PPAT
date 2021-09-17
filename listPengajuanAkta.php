@@ -24,7 +24,7 @@ adminProtect();
 						<ul class="actions">
 							<li>
 								
-								<a href="xls/pelanggan_xls.php" class="button small icon fa-download"> Excel</a>
+								<a href="xls/akta_xls.php" class="button small icon fa-download"> Excel</a>
 							</li>
 						</ul>
 					</div>

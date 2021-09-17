@@ -37,7 +37,7 @@ if(isset($_GET['id'])) {
 		$deskripsi 			= trim($_POST['Deskripsi']);
 		$aktatStatusId		= trim($_POST['AktaStatusId']);
 		$noSK 				= trim($_POST['NoSK']);
-		$tlgAkta 			= trim($_POST['TglAkta']);
+		$tglAkta 			= trim($_POST['TglAkta']);
 		$harga  			= trim($_POST['Harga']);
 		$sudahBayar			= trim($_POST['SudahBayar']);
 		$tipeFile = array('pdf', 'doc', 'docx');
@@ -70,9 +70,9 @@ if(isset($_GET['id'])) {
 					
 
 					if((int)$harga == (int)$sudahBayar){
-						mysql_query("UPDATE UserAktaTransaction SET Keterangan='LUNAS' WHERE Id={$id}");
+						mysql_query("UPDATE UserAktaTransaction SET Keterangan='LUNAS', SisaTagihan=0 WHERE Id={$id}");
 					} else {
-						mysql_query("UPDATE UserAktaTransaction SET Keterangan='BELUM LUNAS' WHERE Id={$id}");
+						mysql_query("UPDATE UserAktaTransaction SET Keterangan='BELUM LUNAS', SisaTagihan={(int)$harga-(int)$sudahBayar} WHERE Id={$id}");
 					}
 					header('Location: '.$_SERVER['REQUEST_URI']);
 
@@ -131,13 +131,13 @@ if(isset($_GET['id'])) {
 									<?php getAktaStatus($aktatStatusId) ?>
 								</select>
 								Tanggal Akta
-								<input type="date" name="TglAkta" placeholder="NPWP" required maxlength="20" value="<?= $tglAkta ?>">
+								<input type="date" name="TglAkta" placeholder="NPWP" maxlength="20" value="<?= $tglAkta ?>">
 								No. SK/SP
-								<input type="text" name="NoSK" placeholder="No. SK/SP" required maxlength="20" value="<?= $noSK ?>">
+								<input type="text" name="NoSK" placeholder="No. SK/SP" maxlength="20" value="<?= $noSK ?>">
 								Harga (Rp.)
-								<input type="text" name="Harga" placeholder="Harga (Rp.)" required maxlength="20" value="<?= $harga ?>">
+								<input type="text" name="Harga" placeholder="Harga (Rp.)" maxlength="20" value="<?= $harga ?>">
 								Sudah Bayar (Rp.)
-								<input type="text" name="SudahBayar" placeholder="Sudah Bayar (Rp.)" required maxlength="20" value="<?= $sudahBayar ?>">
+								<input type="text" name="SudahBayar" placeholder="Sudah Bayar (Rp.)" maxlength="20" value="<?= $sudahBayar ?>">
 								Metode Bayar
 								<input type="text" name="MetodeBayar" value="<?= $row['MetodeBayar'] ?>" disabled>
 								Keterangan
