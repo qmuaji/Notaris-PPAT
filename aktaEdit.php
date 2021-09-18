@@ -131,7 +131,7 @@ if(isset($_GET['id'])) {
 								<input type="text" name="NPWP" placeholder="NPWP" required maxlength="20" value="<?= $npwp ?>">
 								Nama Akta
 								<input type="text" name="NamaAkta" placeholder="Nama Akta" value="<?= $namaAkta ?>">
-								Dokumen Persyaratan : <a href="<?= $row['DocPersyaratan'] ?>" class="icon fa-download"> Download</a><br>
+								Dokumen Persyaratan : <a target='_blank' href="<?= $row['DocPersyaratan'] ?>" class="icon fa-download"> Download</a><br>
 								<?php
 								if(!empty($row['DocAkta'])){
 									$doc = "<a target='_blank' href='{$row['DocAkta']}' class='icon fa-download'> Download</a>";
