@@ -54,7 +54,7 @@ if(isset($_GET['id'])) {
 					uploadAkta($fileTmp, $fileExtn, $kdTransaksi);
 				}
 				
-				if($harga == $sudahBayar){
+				if($harga == $sudahBayar && $harga > 0){
 					mysql_query("UPDATE UserAktaTransaction SET Keterangan='LUNAS', SisaTagihan=0 WHERE Id={$id}");
 				} else {
 					$sisaTagihan = $harga - $sudahBayar;
