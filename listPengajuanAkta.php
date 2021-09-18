@@ -2,6 +2,13 @@
 require 'core/init.php';
 protectPage();
 adminProtect();
+
+if (isset($_GET['del'])){
+	$del 	 = $_GET['del'];
+	if(hapusData('UserAktaTransaction', 'Id', $del)) {
+		header('Location: listPengajuanAkta.php');
+	}
+}
 ?>
 
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -51,7 +58,7 @@ adminProtect();
 
 							<tbody>
 							<?php 
-							$transactionData = mysql_query("SELECT * 
+							$transactionData = mysql_query("SELECT *, UserAktaTransaction.Id AS TrxId
 									FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document
 									WHERE User.Id=UserAktaTransaction.PenghadapId 
 									AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
@@ -93,7 +100,9 @@ adminProtect();
 									}
 									?>
 									<td style="color:<?= $warna ?>"><?= $row['Status'] ?></td>
-									<td><a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a href="#" class="icon fa-trash"></td>
+									<td>
+										<a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a onclick="return confirm('Hapus Pengajuan Akta #<?=$row['KdTransaksi']?>?')" href="?del=<?= $row['TrxId'] ?>" class="icon fa-trash">
+									</td>
 								</tr>
 								<?php
 							}
