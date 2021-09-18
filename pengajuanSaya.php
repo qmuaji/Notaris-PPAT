@@ -12,21 +12,23 @@ $offset=($noPage - 1) * $batas;
 if(isset($_POST['cari'])){ 
   	$cari 		= trim($_POST['cari']);  
 	$nota 		= mysql_query("SELECT * 
-								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
+								FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document 
 								WHERE User.Id=UserAktaTransaction.PenghadapId 
 								AND PenghadapId=$userData[Id] 
 								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+								AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
 								AND KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
     $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE PenghadapId=$userData[Id] AND KdTransaksi='$cari'");   
 	?>		<?php
 }else{
 	$nota 		= mysql_query("SELECT * 
-								FROM UserAktaTransaction, User, JenisAkta, AktaStatus 
+								FROM UserAktaTransaction, User, JenisAkta, AktaStatus, Document
 								WHERE User.Id=UserAktaTransaction.PenghadapId 
 								AND PenghadapId=$userData[Id] 
 								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
+								AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
 								ORDER BY TglTransaksi DESC LIMIT $offset, $batas") or die (mysql_error());
 	$q 			= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE PenghadapId=$userData[Id]");
 } 
@@ -93,7 +95,7 @@ $no = $offset+1;
 		<tr align="center">
 			<td>
 			<?php
-			(!empty($transactionData['NoSK'])) ? $noSK=$transactionData['NoSK'] : $noSK='-';
+			(!empty($transactionData['NoSK'])) ? $noSK="<a target='_blank' href='{$transactionData['DocAkta']}' class='icon fa-download'> {$transactionData['NoSK']}</a>" : $noSK='-';
 				echo $noSK;
 			?>
 			</td>
