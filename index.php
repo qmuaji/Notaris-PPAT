@@ -9,7 +9,7 @@ include 'includes/_head.php';
 	if(loggedIn()) {
 		if(hasAccess($_SESSION['user_id'], 2) || hasAccess($_SESSION['user_id'], 3)) {
 		?>
-			<section id="banner" style="margin-top:-80px">
+			<!-- <section id="banner" style="margin-top:-80px">
 				<div class="container">
 		
 		
@@ -27,10 +27,10 @@ include 'includes/_head.php';
 				</div>
 			</section>
 		</header>	
-		</body>	
+		</body>	 -->
 			<?php
-
-			include 'includes/_footer.php';	
+			header("Location: alurTransaksi.php");
+			// include 'includes/_footer.php';	
 			exit();
 		}
 	}
