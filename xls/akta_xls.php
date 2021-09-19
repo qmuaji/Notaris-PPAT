@@ -1,5 +1,6 @@
 <?php
-
+protectPage();
+adminProtect();
 error_reporting(0);
 
 require_once '../core/init.php';
