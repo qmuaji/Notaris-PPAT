@@ -78,7 +78,7 @@ function tambahData($tambahData, $table) {
 
 function adminProtect() {
 	if(!(hasAccess($_SESSION['user_id'], 2) || hasAccess($_SESSION['user_id'], 3))){
-		header("Location: ./");
+		header("Location: ../");
 		exit();
 	}
 }
@@ -92,11 +92,11 @@ function email($to, $subject, $isi) {
 }
 
 function loggedInRedirect() {
-	if(loggedIn()) header("Location: ./");
+	if(loggedIn()) header("Location: ../");
 }
 
 function protectPage() {
-	if(!loggedIn()) header("Location: login.php");
+	if(!loggedIn()) header("Location: ../login.php");
 }
 
 function arraySanitize(&$item){
