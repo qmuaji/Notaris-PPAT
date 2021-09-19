@@ -1,4 +1,5 @@
 <?php
+require '../core/init.php';
 protectPage();
 adminProtect();
 error_reporting(0);
