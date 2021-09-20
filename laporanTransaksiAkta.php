@@ -77,51 +77,65 @@ $no = 1;
 			<thead>
 				<tr class="warning">
 					<th class='text-center'><small>#</small></th>
-					<th class='text-center'>Tanggal</th>
 					<th class='text-center'>Kode Transaksi</th>
-					<th class='text-center'>Nama Penghadap</th>
+					<th class='text-center'>Tanggal Transaksi</th>
+					<th class='text-center'>No. Akta</th>
+					<th class='text-center'>Tanggal Akta</th>
+					<th class='text-center'>No. Sk</th>
 					<th class='text-center'>Jenis Akta</th>
-					<th class='text-center'>Nama Akta</th>
+					<th class='text-center'>Deskripsi</th>
 					<th class='text-center'>Harga</th>	
+					<th class='text-center'>Sudah Bayar</th>
 					<th class='text-center'>Sisa Tagihan</th>	
 					<th class='text-center'>Keterangan</th>	
+					<th class='text-center'>Nama Penghadap</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php 
 				$subTotal = 0;
 				$subTotal2 = 0;
+				$subTotal3 = 0;
 				while($rows = mysql_fetch_array($result)){
 					$tgl 	= $rows['TglTransaksi'];
+					$tglAkta 	= $rows['TglAkta'];
 					$tgl = date("d F, Y", strtotime($tgl));
 					$kdTransaksi 	= $rows['KdTransaksi'];
 					$namaPenghadap 	= $rows['NamaLengkap'];
+					$noAkta 		= $rows['NoAkta'];
 					$jenisAkta 		= $rows['JenisAkta'];
-					$namaAkta 		= $rows['NamaAkta'];
+					$deskripsi 		= $rows['Deskripsi'];
 					$harga 			= $rows['Harga'];
+					$sudahBayar 	= $rows['SudahBayar'];
 					$sisaTagihan 	= $rows['SisaTagihan'];
-					$status 		= $rows['Keterangan'];
+					$noSK 			= $rows['NoSK'];
+					$keterangan 	= $rows['Keterangan'];
 					$subTotal 		= $subTotal + $harga;
-					$subTotal2 		= $subTotal2 + $sisaTagihan;
+					$subTotal2 		= $subTotal2 + $sudahBayar;
+					$subTotal3 		= $subTotal3 + $sisaTagihan;
 
 				 ?>
 				<tr>
 					<td class='text-center'><small><?= $no ?></small></td>
-					<td><?= $tgl ?></td>
 					<td class='text-center'><small><?= $kdTransaksi ?></small></td>
-					<td class='text-center'><small><?= $namaPenghadap ?></small></td>
+					<td><?= $tgl ?></td>
+					<td class='text-center'><small><?= $noAkta ?></small></td>
+					<td class='text-center'><small><?= $tglAkta ?></small></td>
+					<td class='text-center'><small><?= $noSK ?></small></td>
 					<td class='text-center'><small><?= $jenisAkta ?></small></td>
-					<td class='text-center'><small><?= $namaAkta ?></small></td>
+					<td class='text-center'><small><?= $deskripsi ?></small></td>
 					<td class='text-right'><?= number_format($harga,0,',','.') ?></td>
+					<td class='text-right'><?= number_format($sudahBayar,0,',','.') ?></td>
 					<td class='text-right'><?= number_format($sisaTagihan,0,',','.') ?></td>
-					<td class='text-right'><?= $status ?></td>
+					<td class='text-center'><small><?= $keterangan ?></small></td>
+					<td class='text-right'><?= $namaPenghadap ?></td>
 				</tr>
 				<?php 
 					$no++;	
 				}
 			 ?>
 				<tr>		
-					<td colspan="4" class='text-right'>
+					<td colspan="8" class='text-right'>
 						Total
 					</td>		
 				 	<td class='text-right'>
@@ -129,6 +143,9 @@ $no = 1;
 				 	</td>
 				 	<td class='text-right'>
 				 		<b><?= number_format($subTotal2,0,',','.') ?></b>
+				 	</td>
+				 	<td class='text-right'>
+				 		<b><?= number_format($subTotal3,0,',','.') ?></b>
 				 	</td>
 
 				</tr>		

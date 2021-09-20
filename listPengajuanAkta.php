@@ -84,8 +84,9 @@ if (isset($_GET['del'])){
 										$doc = "<a target='_blank' href='{$row['DocAkta']}' class='icon fa-download'></a>";
 
 									}else {
-										$doc = '-';
+										$doc = "<b class='icon fa-minus'></b>";
 									}
+
 									if($row['Status'] == 'Diperiksa'){
 										$warna='black';
 									}elseif($row['Status']== 'Diproses'){
@@ -98,9 +99,9 @@ if (isset($_GET['del'])){
 									?>
 									<td style="color:<?= $warna ?>"><?= $row['Status'] ?></td>
 									<td>
-										<a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | 	
+										<a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> </a> | 	
 										<?=$doc?> | 									
-										<a onclick="return confirm('Hapus Pengajuan Akta #<?=$row['KdTransaksi']?>?')" href="?del=<?= $row['TrxId'] ?>" class="icon fa-trash">
+										<a onclick="return confirm('Hapus Pengajuan Akta #<?=$row['KdTransaksi']?>?')" href="?del=<?= $row['TrxId'] ?>" class="icon fa-trash"></a>
 									</td>
 								</tr>
 								<?php
