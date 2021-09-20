@@ -17,8 +17,10 @@ $start	= "";
 $end	= date('Y-m-d');
 $ket 	= 'Awal - Akhir';
 $result = mysql_query("SELECT * 
-						FROM UserAktaTransaction
-						WHERE TglTransaksi BETWEEN '$start' AND '$end'
+						FROM UserAktaTransaction, User, JenisAkta
+						WHERE User.Id=UserAktaTransaction.PenghadapId 
+						AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
+						AND TglTransaksi BETWEEN '$start' AND '$end'
 						ORDER BY TglTransaksi
 						LIMIT $offset, $batas") or die (mysql_error());
 
@@ -30,8 +32,10 @@ if (!empty($_POST)){
 	$end 	= date('Y-m-d', strtotime($_POST['end'])); 
 
 	$result = mysql_query("SELECT * 
-							FROM UserAktaTransaction							
-							WHERE TglTransaksi BETWEEN '$start' AND '$end'
+							FROM UserAktaTransaction, User, JenisAkta
+							WHERE User.Id=UserAktaTransaction.PenghadapId 
+							AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
+							AND TglTransaksi BETWEEN '$start' AND '$end'
 							ORDER BY TglTransaksi
 							LIMIT $offset, $batas") or die (mysql_error());
 
@@ -75,6 +79,8 @@ $no = 1;
 					<th class='text-center'><small>#</small></th>
 					<th class='text-center'>Tanggal</th>
 					<th class='text-center'>Kode Transaksi</th>
+					<th class='text-center'>Nama Penghadap</th>
+					<th class='text-center'>Jenis Akta</th>
 					<th class='text-center'>Nama Akta</th>
 					<th class='text-center'>Harga</th>	
 					<th class='text-center'>Sisa Tagihan</th>	
@@ -89,6 +95,8 @@ $no = 1;
 					$tgl 	= $rows['TglTransaksi'];
 					$tgl = date("d F, Y", strtotime($tgl));
 					$kdTransaksi 	= $rows['KdTransaksi'];
+					$namaPenghadap 	= $rows['NamaLengkap'];
+					$jenisAkta 		= $rows['JenisAkta'];
 					$namaAkta 		= $rows['NamaAkta'];
 					$harga 			= $rows['Harga'];
 					$sisaTagihan 	= $rows['SisaTagihan'];
@@ -101,6 +109,8 @@ $no = 1;
 					<td class='text-center'><small><?= $no ?></small></td>
 					<td><?= $tgl ?></td>
 					<td class='text-center'><small><?= $kdTransaksi ?></small></td>
+					<td class='text-center'><small><?= $namaPenghadap ?></small></td>
+					<td class='text-center'><small><?= $jenisAkta ?></small></td>
 					<td class='text-center'><small><?= $namaAkta ?></small></td>
 					<td class='text-right'><?= number_format($harga,0,',','.') ?></td>
 					<td class='text-right'><?= number_format($sisaTagihan,0,',','.') ?></td>
