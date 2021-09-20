@@ -32,8 +32,7 @@
 					?>
 					<li><a href="#">Laporan <span class="icon fa-angle-down"></span></a>
 						<ul>
-							<li><a href="a_studios.php">laporan Akta</a></li>	
-							<li><a href="a_laptrans.php">Laporan Transaksi Keuangan</a></li>
+							<li><a href="laporanTransaksiAkta.php">Laporan Transaksi Akta</a></li>
 						</ul>
 					</li>
 					<li> | </li>
