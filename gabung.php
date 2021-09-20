@@ -37,7 +37,7 @@ if(!empty($_POST) ) {
 		} else {
 			$_SESSION['user_id'] = $login;
 
-			header("Location: my.php");
+			header("Location: ./");
 			exit();
 			
 		}
