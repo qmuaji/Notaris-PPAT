@@ -83,11 +83,9 @@ $no = 1;
 					<th class='text-center'>Tanggal Akta</th>
 					<th class='text-center'>No. Sk</th>
 					<th class='text-center'>Jenis Akta</th>
-					<th class='text-center'>Deskripsi</th>
 					<th class='text-center'>Harga</th>	
 					<th class='text-center'>Sudah Bayar</th>
 					<th class='text-center'>Sisa Tagihan</th>	
-					<th class='text-center'>Keterangan</th>	
 					<th class='text-center'>Nama Penghadap</th>
 				</tr>
 			</thead>
@@ -102,14 +100,13 @@ $no = 1;
 					$tgl = date("d F, Y", strtotime($tgl));
 					$kdTransaksi 	= $rows['KdTransaksi'];
 					$namaPenghadap 	= $rows['NamaLengkap'];
+					$namaAkta	 	= $rows['NamaAkta'];
 					$noAkta 		= $rows['NoAkta'];
 					$jenisAkta 		= $rows['JenisAkta'];
-					$deskripsi 		= $rows['Deskripsi'];
 					$harga 			= $rows['Harga'];
 					$sudahBayar 	= $rows['SudahBayar'];
 					$sisaTagihan 	= $rows['SisaTagihan'];
 					$noSK 			= $rows['NoSK'];
-					$keterangan 	= $rows['Keterangan'];
 					$subTotal 		= $subTotal + $harga;
 					$subTotal2 		= $subTotal2 + $sudahBayar;
 					$subTotal3 		= $subTotal3 + $sisaTagihan;
@@ -122,20 +119,18 @@ $no = 1;
 					<td class='text-center'><small><?= $noAkta ?></small></td>
 					<td class='text-center'><small><?= $tglAkta ?></small></td>
 					<td class='text-center'><small><?= $noSK ?></small></td>
-					<td class='text-center'><small><?= $jenisAkta ?></small></td>
-					<td class='text-center'><small><?= $deskripsi ?></small></td>
+					<td class='text-center'><small><?= $jenisAkta.' - '.$namaAkta ?></small></td>
 					<td class='text-right'><?= number_format($harga,0,',','.') ?></td>
 					<td class='text-right'><?= number_format($sudahBayar,0,',','.') ?></td>
 					<td class='text-right'><?= number_format($sisaTagihan,0,',','.') ?></td>
-					<td class='text-center'><small><?= $keterangan ?></small></td>
-					<td class='text-right'><?= $namaPenghadap ?></td>
+					<td class='text-left'><?= $namaPenghadap ?></td>
 				</tr>
 				<?php 
 					$no++;	
 				}
 			 ?>
 				<tr>		
-					<td colspan="8" class='text-right'>
+					<td colspan="7" class='text-right'>
 						Total
 					</td>		
 				 	<td class='text-right'>
