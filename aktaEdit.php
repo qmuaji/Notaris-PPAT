@@ -27,6 +27,7 @@ if(isset($_GET['id'])) {
 		$tglAkta 			= trim($_POST['TglAkta']);
 		$harga  			= (int)trim($_POST['Harga']);
 		$sudahBayar			= (int)trim($_POST['SudahBayar']);
+		$noAkta			= (int)trim($_POST['NoAkta']);
 		$tipeFile = array('pdf', 'doc', 'docx');
 		$fileName = $_FILES['DocAkta']['name'];
 		$extn 	  = explode('.', $fileName);
@@ -47,6 +48,7 @@ if(isset($_GET['id'])) {
 					'TglAkta'		=> $tglAkta,
 					'Harga'			=> $harga,
 					'PembuatAkta'	=> $userData['NamaLengkap'],
+					'NoAkta'		=> $noAkta,
 					'SudahBayar'	=> $sudahBayar
 				);
 				
@@ -91,6 +93,8 @@ if(isset($_GET['id'])) {
 	$harga 			= $row['Harga'];
 	$sudahBayar		= $row['SudahBayar'];
 	$kdTransaksi    = $row['KdTransaksi'];
+	$aktaStatus    	= $row['Status'];
+	$noAkta    		= $row['NoAkta'];
 
 
 
@@ -101,7 +105,7 @@ if(isset($_GET['id'])) {
 		<div class="row">			
 			<div class="col-12">
 				<section class="box">
-					<h3>Formulir Pengajuan Akta #<?=$kdTransaksi?></h3>
+					<h3>Pengajuan Akta #<?=$kdTransaksi.' - '.$aktaStatus?></h3>
 					<form action="" method="post" autocomplete="off" enctype="multipart/form-data">			
 						<div class="row">
 							<div class="col-6 col-12-mobilep">
@@ -131,6 +135,8 @@ if(isset($_GET['id'])) {
 								<input type="text" name="NPWP" placeholder="NPWP" required maxlength="20" value="<?= $npwp ?>">
 								Nama Akta
 								<input type="text" name="NamaAkta" placeholder="Nama Akta" value="<?= $namaAkta ?>">
+								No. Akta
+								<input type="text" name="NoAkta" placeholder="No. Akta" value="<?= $noAkta ?>">
 								Dokumen Persyaratan : <a target='_blank' href="<?= $row['DocPersyaratan'] ?>" class="icon fa-download"> Download</a><br>
 								<?php
 								if(!empty($row['DocAkta'])){
@@ -143,7 +149,7 @@ if(isset($_GET['id'])) {
 								Upload Dokumen Akta*
 								<input type="file" name="DocAkta" accept="files/*"><br>
 								Deskripsi*
-								<textarea name="Deskripsi" placeholder="Deskripsi" rows="4" maxlength="225" ><?= $deskripsi ?></textarea>
+								<textarea name="Deskripsi" placeholder="Deskripsi" rows="2" maxlength="225" ><?= $deskripsi ?></textarea>
 							</div>
 							<div class="col-6 col-12-mobilep">	
 								Status Akta
