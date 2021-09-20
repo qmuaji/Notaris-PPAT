@@ -43,15 +43,14 @@ if (isset($_GET['del'])){
 								<tr>
 									<th>Kode Transaksi</th>
 									<th>Tgl Transaksi</th>
+									<th>No Akta</th>
+									<th>Tgl Akta</th>
 									<th>Jenis Transaksi</th>
-									<th>Nama Penghadap</th>
-									<th>No Tlp</th>
-									<th>NPWP Pribadi/PT</th>
+									<th>Deskripsi</th>
 									<th>Harga (Rp)</th>
-									<th>Sudah Bayar (Rp)</th>
-									<th>No SK/SP</th>
-									<th>Akta</th>
-									<th>STATUS</th>
+									<th>Keterangan</th>
+									<th>Nama Penghadap</th>
+									<th>Status</th>
 									<th>Opsi</th>
 								</tr>
 							</thead>
@@ -73,22 +72,20 @@ if (isset($_GET['del'])){
 								<tr>
 									<td><?= $row['KdTransaksi'] ?></td>
 									<td><?= date('d/m/y', strtotime($row['TglTransaksi'])) ?></td>
+									<td><?= $row['NoAkta'] ?></td>
+									<td><?= $row['TglAkta'] ?></td>
 									<td><?= $row['JenisAkta'] ?></td>
-									<td><?= $row['NamaLengkap'] ?></td>
-									<td><?= $row['NoTlp'] ?></td>
-									<td><?= $row['NPWP'] ?></td>
+									<td><?= $row['Deskripsi'] ?></td>
 									<td><?= rupiah($row['Harga']) ?></td>
-									<td><?= rupiah($row['SudahBayar']) ?></td>
-									<td><?= $row['NoSK'] ?></td>
+									<td><?= $row['Keterangan'] ?></td>
+									<td><?= $row['NamaLengkap'] ?></td>
 									<?php
 									if(!empty($row['DocAkta'])){
 										$doc = "<a target='_blank' href='{$row['DocAkta']}' class='icon fa-download'></a>";
+
 									}else {
 										$doc = '-';
 									}
-									?>
-									<td><?=$doc?> </td>
-									<?php 
 									if($row['Status'] == 'Diperiksa'){
 										$warna='black';
 									}elseif($row['Status']== 'Diproses'){
@@ -101,7 +98,9 @@ if (isset($_GET['del'])){
 									?>
 									<td style="color:<?= $warna ?>"><?= $row['Status'] ?></td>
 									<td>
-										<a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | <a onclick="return confirm('Hapus Pengajuan Akta #<?=$row['KdTransaksi']?>?')" href="?del=<?= $row['TrxId'] ?>" class="icon fa-trash">
+										<a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> | 	
+										<?=$doc?> | 									
+										<a onclick="return confirm('Hapus Pengajuan Akta #<?=$row['KdTransaksi']?>?')" href="?del=<?= $row['TrxId'] ?>" class="icon fa-trash">
 									</td>
 								</tr>
 								<?php
