@@ -40,7 +40,7 @@ $no = $offset+1;
 <div style="margin-top:-30px" id="main" class="container">
 	<h3> Status Pengajuan Saya</h3>
 	<?php  
-	if(mysql_num_rows($nota) == 0) echo("<hr><h2 align='center'><span class='icon fa-search'></span> Data tidak ditemukan, <br><a class='icon fa-chevron-left' href='penyewaan.php'> Kembali</a></h2><hr>");
+	if(mysql_num_rows($nota) == 0) echo("<hr><h2 align='center'><span class='icon fa-search'></span> Data tidak ditemukan, <br><a class='icon fa-chevron-left' href='pengajuanAkta.php'> Kembali</a></h2><hr>");
 
 	while($transactionData = mysql_fetch_assoc($nota)){
 	?>
