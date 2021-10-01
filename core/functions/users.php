@@ -20,7 +20,7 @@ function uploadDocumentFile($fileTmp, $fileExtn, $kdTransaksi) {
 }
 
 function uploadAkta($fileTmp, $fileExtn, $kdTransaksi) {
-	$pathFile = sanitize('documents/persyaratan_'.$kdTransaksi.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
+	$pathFile = sanitize('documents/akta_'.$kdTransaksi.substr(date('d_m_y-').(time()), 0). '.' .$fileExtn);
 	mysql_query("UPDATE Document SET DocAkta='{$pathFile}' WHERE kdTransaksi='{$kdTransaksi}'");
 	move_uploaded_file($fileTmp, $pathFile);
 }
