@@ -18,7 +18,7 @@ if(isset($_POST['cari'])){
 								AND JenisAkta.Id=UserAktaTransaction.JenisAktaId
 								AND UserAktaTransaction.AktaStatusId=AktaStatus.Id
 								AND Document.KdTransaksi=UserAktaTransaction.KdTransaksi
-								AND KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
+								AND UserAktaTransaction.KdTransaksi='$cari' ORDER BY TglTransaksi DESC");
     $q     	  	= mysql_query("SELECT COUNT(Id) FROM UserAktaTransaction WHERE PenghadapId=$userData[Id] AND KdTransaksi='$cari'");   
 	?>		<?php
 }else{
