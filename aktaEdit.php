@@ -170,7 +170,8 @@ if(isset($_GET['id'])) {
 								<input type="text" name="Keterangan" value="<?= $row['Keterangan'] ?>" disabled>
 							</div>
 						</div>		
-						<input type="submit" value="Update Pengajuan Akta" class="special fit" onclick="return confirm('Update Pengajuan Akta?')">		
+						<input type="submit" value="Update Pengajuan Akta" class="special fit" onclick="return confirm('Update Pengajuan Akta?')">	
+						<a href="listPengajuanAkta.php" class="button fit alt">Batal</a>	
 					</form>
 				</section>		
 			</div>

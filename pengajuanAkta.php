@@ -122,7 +122,8 @@ if(!empty($alert)) echo outputErrors($alert);
 							</select>
 						</div>
 					</div>		
-					<input type="submit" value="Submit Pengajuan Akta" class="special fit" onclick="return confirm('Submit Pengajuan Akta?')">		
+					<input type="submit" value="Submit Pengajuan Akta" class="special fit" onclick="return confirm('Submit Pengajuan Akta?')">	
+					<a href="./" class="button fit alt">Batal</a>
 				</form>
 			</section>		
 		</div>

@@ -99,7 +99,7 @@ if (isset($_GET['del'])){
 									?>
 									<td style="color:<?= $warna ?>"><?= $row['Status'] ?></td>
 									<td>
-										<a href="aktaEdit.php?id=<?= $row['Id'] ?>" class="icon fa-edit"> </a> | 	
+										<a onclick="return confirm('Ubah Pengajuan Akta #<?=$row['KdTransaksi']?>?')"href="aktaEdit.php?id=<?= $row['TrxId'] ?>" class="icon fa-edit"> </a> | 	
 										<?=$doc?> | 									
 										<a onclick="return confirm('Hapus Pengajuan Akta #<?=$row['KdTransaksi']?>?')" href="?del=<?= $row['TrxId'] ?>" class="icon fa-trash"></a>
 									</td>
