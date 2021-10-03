@@ -107,11 +107,12 @@ if(!empty($alert)) echo outputErrors($alert);
 							<input type="text" name="Pekerjaan" placeholder="Pekerjaan"  value="<?= $pekerjaan ?>" required maxlength="20">
 							Alamat*
 							<textarea name="Alamat" placeholder="Alamat" cols="30" rows="6" maxlength="225" required=""><?= $alamat ?></textarea>
-							<input type="submit" value="Simpan" class="fit special">				
+							<input type="submit" value="Simpan" class="fit special">	
 						</div>
 					</div>		
 				</form>
 				<a href="pengajuanAkta.php" class="button special fit" style="background-color: #1F74C4">Pengajuan Akta</a>
+				<a href="./" class="button fit alt">Batal</a>			
 			</div>		
 		</div>
 	</div>
