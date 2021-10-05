@@ -37,7 +37,9 @@ include 'includes/_head.php';
 	?>
 	
 		<section id="banner">
-			<h2>Pengelolaan Transaksi Akta<br><i class="icon fa-book"></i></h2>
+			<h2>Pengelolaan Transaksi Akta <i class="icon fa-book"></i></h2>
+			<h3>Kantor Notaris & PPAT Rian Erza, SH. M.Kn</h3>
+			<h4>Telp: (0266) 6244564</h4>
 	<div id="page-wrapper">
 
 		<?php
@@ -56,7 +58,8 @@ include 'includes/_head.php';
 			}
 		} else {
 			?>
-			<h5>Kantor Notaris & PPAT Rian Erza, SH. M.Kn</h5>
+			
+			<h5>Jl. Arif Rahman Hakim No.75, Benteng, Kec. Warudoyong, Kota Sukabumi, Jawa Barat 43134</h5><br><br>
 			<ul class="actions">
 				<li><a href="signup.php" class="button special">Daftar</a></li>
 				<li><a href="login.php" class="button">Log In</a></li>

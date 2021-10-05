@@ -6,9 +6,13 @@ adminProtect();
 if (isset($_GET['del'])){
 	$del 	 = $_GET['del'];
 	if(hapusData('UserAktaTransaction', 'Id', $del)) {
-		header('Location: listPengajuanAkta.php');
+		header('Location: listPengajuanAkta.php?del=success');
 	}
 }
+if(!empty($_GET['del'])) {
+		$alert[] = "Pengajuan berhasil di hapus!";
+
+	}
 ?>
 
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
@@ -18,7 +22,7 @@ if (isset($_GET['del'])){
 
 <div id="main" style="margin-top:-30px" class="panel-body">
 
-			
+	<?php if(!empty($alert)) echo outputErrors($alert);?>
 
 	<div class="row">
 		<div class="12u">
