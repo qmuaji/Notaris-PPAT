@@ -73,8 +73,14 @@ if(isset($_GET['code']) || isset($_SESSION['cetakNota'])){
 			<td> <?= $transactionData['Keterangan']?></td>	
 		</tr>
 	</table>
+	<div style="text-align: right;">
+		
+		<sub>
+		Sukabumi,___________ <br><br><br>
+		( Administrasi )    
+		</sub>
 	</div>
-	<sub>*Bukti pemesanan akan hangus jika tidak digunakan pada jam yang telah ditentukan!</sub>
+	</div>
 </div>
 
 <?php
